@@ -1043,29 +1043,9 @@
             });
         });
 
-        // Infinite marquee - clone content to fill viewport and ensure seamless loop
-        function setupMarquee() {
-            const track = document.querySelector('.marquee-track');
-            if (!track) return;
-
-            const content = track.querySelector('.marquee-content');
-            if (!content) return;
-
-            // Calculate how many clones we need to fill the viewport
-            const contentWidth = content.offsetWidth;
-            const viewportWidth = window.innerWidth;
-            const clonesNeeded = Math.ceil(viewportWidth / contentWidth) + 2;
-
-            // We already have 2 copies in HTML, add more if needed
-            for (let i = 0; i < clonesNeeded - 2; i++) {
-                const clone = content.cloneNode(true);
-                clone.setAttribute('aria-hidden', 'true');
-                track.appendChild(clone);
-            }
-        }
-
-        setupMarquee();
-        window.addEventListener('resize', setupMarquee);
+        // Infinite marquee - handled purely with CSS
+        // The marquee uses two identical content blocks and translateX(-50%) animation
+        // No JS cloning needed - CSS handles the seamless loop
     </script>
 </body>
 </html>
