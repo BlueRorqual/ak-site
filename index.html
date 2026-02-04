@@ -764,9 +764,6 @@
                 gap: 1rem;
             }
 
-            .marquee-section {
-                display: none;
-            }
         }
 
         /* Focus states */
@@ -1048,18 +1045,12 @@
             const track = document.querySelector('.marquee-track');
             if (!track) return;
 
-            const section = document.querySelector('.marquee-section');
-            if (!section) return;
-
             // Get the original content (first one only)
             const originalContent = track.querySelector('.marquee-content');
             if (!originalContent) return;
 
             // Only run once on load, not on resize
             function setupMarquee() {
-                // Skip if hidden (mobile)
-                if (window.getComputedStyle(section).display === 'none') return;
-
                 const contentWidth = originalContent.offsetWidth;
                 if (contentWidth === 0) return;
 
