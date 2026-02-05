@@ -203,6 +203,36 @@
             position: fixed;
         }
 
+        .portrait-section {
+            position: relative;
+            height: 15vh;
+            min-height: 100px;
+            margin-top: 15rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #about {
+            padding-top: 4rem;
+        }
+
+        .portrait-anchor {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 1px;
+            height: 1px;
+        }
+
+        @media (max-width: 768px) {
+            .portrait-section {
+                height: 40vh;
+                min-height: 300px;
+            }
+        }
+
         .hero-content {
             position: relative;
             z-index: 2;
@@ -887,6 +917,10 @@
         </div>
     </header>
 
+    <section class="portrait-section">
+        <div class="portrait-anchor"></div>
+    </section>
+
     <!--
     <div class="marquee-section">
         <div class="marquee">
@@ -1120,33 +1154,34 @@
             window.addEventListener('scroll', onScroll, { passive: true });
         })();
 
-        // Portrait scroll behavior - follows scroll, sticks between hero and about
+        // Portrait scroll behavior - scrolls into portrait section, stops before about
         (function() {
             const portrait = document.querySelector('.hero-portrait');
+            const portraitSection = document.querySelector('.portrait-section');
             const aboutSection = document.querySelector('#about');
-            if (!portrait || !aboutSection) return;
+            if (!portrait || !portraitSection || !aboutSection) return;
 
             function updatePortraitPosition() {
                 const portraitHeight = portrait.offsetHeight;
                 const viewportHeight = window.innerHeight;
                 const viewportCenter = viewportHeight / 2;
 
-                // Where the portrait bottom would be if centered (in document coords)
-                const centeredBottom = window.scrollY + viewportCenter + (portraitHeight / 2);
+                // Portrait section center in document coords
+                const sectionCenter = portraitSection.offsetTop + (portraitSection.offsetHeight / 2);
 
-                // The maximum document position for the portrait's bottom
-                const maxBottom = aboutSection.offsetTop + 100;
+                // Maximum position: portrait bottom at about section top
+                const maxBottom = aboutSection.offsetTop;
 
-                if (centeredBottom > maxBottom) {
-                    // Portrait would go too low - cap it
-                    const cappedTop = maxBottom - portraitHeight - window.scrollY;
-                    portrait.style.top = cappedTop + 'px';
-                    portrait.style.transform = 'translateX(-50%)';
-                } else {
-                    // Normal centered position
-                    portrait.style.top = '50%';
-                    portrait.style.transform = 'translate(-50%, -50%)';
-                }
+                // Calculate where the portrait center should be in document coords
+                // Start at viewport center, but cap between section center and max position
+                const desiredCenter = window.scrollY + viewportCenter;
+                const clampedCenter = Math.max(sectionCenter, Math.min(desiredCenter, maxBottom - (portraitHeight / 2)));
+
+                // Convert to viewport-relative top position
+                const topInViewport = clampedCenter - (portraitHeight / 2) - window.scrollY;
+
+                portrait.style.top = topInViewport + 'px';
+                portrait.style.transform = 'translateX(-50%)';
             }
 
             window.addEventListener('scroll', updatePortraitPosition, { passive: true });
