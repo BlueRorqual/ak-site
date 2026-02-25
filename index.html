@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Akhil Krishnan - Practising clarity. Sales, systems thinking, and long-term work.">
     <title>Akhil Krishnan</title>
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -160,7 +159,12 @@
             background: conic-gradient(from -55deg at 50% 50%, transparent 300deg, var(--accent-copper-dim) 330deg, transparent 360deg);
             opacity: 0.5;
             animation: rayRotate 20s linear infinite;
+            will-change: transform;
             pointer-events: none;
+        }
+
+        .animation-paused .hero-ray {
+            animation-play-state: paused;
         }
 
         @keyframes rayRotate {
@@ -177,7 +181,7 @@
             height: 600px;
             background: radial-gradient(ellipse, var(--accent-copper-dim) 0%, transparent 60%);
             opacity: 0.6;
-            filter: blur(100px);
+            filter: blur(50px);
             pointer-events: none;
         }
 
@@ -190,28 +194,18 @@
             height: auto;
             max-height: 90vh;
             object-fit: contain;
-            opacity: 0.35;
-            filter: sepia(0.3) saturate(0.7) brightness(1.25) contrast(1.05);
-            mix-blend-mode: luminosity;
-            mask-image: radial-gradient(ellipse 80% 90% at 50% 48%,
-                rgba(0,0,0,1) 10%,
-                rgba(0,0,0,0.8) 25%,
-                rgba(0,0,0,0.5) 40%,
-                rgba(0,0,0,0.25) 55%,
-                rgba(0,0,0,0.1) 65%,
-                rgba(0,0,0,0.03) 75%,
-                transparent 85%);
-            -webkit-mask-image: radial-gradient(ellipse 80% 90% at 50% 48%,
-                rgba(0,0,0,1) 10%,
-                rgba(0,0,0,0.8) 25%,
-                rgba(0,0,0,0.5) 40%,
-                rgba(0,0,0,0.25) 55%,
-                rgba(0,0,0,0.1) 65%,
-                rgba(0,0,0,0.03) 75%,
-                transparent 85%);
+            opacity: 0.58;
+            filter: brightness(1.15) contrast(1.12);
+            mix-blend-mode: normal;
+            mask-image: radial-gradient(ellipse 65% 75% at 50% 48%, black 20%, transparent 65%);
+            -webkit-mask-image: radial-gradient(ellipse 65% 75% at 50% 48%, black 20%, transparent 65%);
             pointer-events: none;
             z-index: 0;
-            will-change: transform;
+            will-change: transform, top;
+        }
+
+        .animation-paused .hero-portrait {
+            transition: none;
         }
 
         .hero-portrait.stuck {
@@ -396,6 +390,10 @@
         @keyframes scroll {
             from { transform: translateX(0); }
             to { transform: translateX(-50%); }
+        }
+
+        .animation-paused .marquee-track {
+            animation-play-state: paused;
         }
 
         /* Section styling */
@@ -716,7 +714,7 @@
             height: 500px;
             background: radial-gradient(ellipse, var(--accent-copper-dim) 0%, transparent 60%);
             opacity: 0.4;
-            filter: blur(80px);
+            filter: blur(40px);
             pointer-events: none;
         }
 
@@ -792,7 +790,7 @@
             .hero-portrait {
                 width: 90%;
                 max-width: 400px;
-                opacity: 0.18;
+                opacity: 0.29;
             }
 
             .timeline-item {
@@ -855,6 +853,112 @@
         .reveal-delay-3 { transition-delay: 0.3s; }
         .reveal-delay-4 { transition-delay: 0.4s; }
 
+        /* === ENHANCEMENTS === */
+
+        /* Cursor spotlight */
+        .cursor-spotlight {
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, var(--accent-copper-dim) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0;
+            left: 0;
+            top: 0;
+            will-change: transform;
+            transition: opacity 0.5s ease;
+            filter: blur(30px);
+        }
+
+        body:hover .cursor-spotlight {
+            opacity: 0.4;
+        }
+
+        .cursor-spotlight.disabled {
+            opacity: 0 !important;
+        }
+
+        /* Hero entrance orchestration */
+        .hero-content {
+            opacity: 0;
+        }
+
+        .hero-loaded .hero-content {
+            opacity: 1;
+        }
+
+        .hero-tagline {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo);
+        }
+
+        .hero-loaded .hero-tagline {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.3s;
+        }
+
+        .hero-name {
+            opacity: 0;
+            clip-path: inset(0 100% 0 0);
+            transition: clip-path 1s var(--ease-out-expo), opacity 0.01s;
+        }
+
+        .hero-loaded .hero-name {
+            opacity: 1;
+            clip-path: inset(0 0% 0 0);
+            transition-delay: 0.5s;
+        }
+
+        .hero-name span {
+            display: block;
+            opacity: 0;
+            clip-path: inset(0 100% 0 0);
+            transition: clip-path 1s var(--ease-out-expo), opacity 0.01s;
+        }
+
+        .hero-loaded .hero-name span {
+            opacity: 1;
+            clip-path: inset(0 0% 0 0);
+            transition-delay: 0.7s;
+        }
+
+        .hero-intro {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo);
+        }
+
+        .hero-loaded .hero-intro {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.9s;
+        }
+
+        .hero-links {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo);
+        }
+
+        .hero-loaded .hero-links {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 1.1s;
+        }
+
+        .hero-portrait {
+            opacity: 0;
+            transition: opacity 1.5s ease, filter 0.3s ease;
+        }
+
+        .hero-loaded .hero-portrait {
+            opacity: 0.58;
+            transition-delay: 0.2s;
+        }
+
         /* Scroll indicator */
         .scroll-indicator {
             position: absolute;
@@ -865,9 +969,14 @@
             flex-direction: column;
             align-items: center;
             gap: 0.5rem;
-            opacity: 1;
-            transition: opacity 0.4s ease;
+            opacity: 0;
+            transition: opacity 0.8s ease;
             z-index: 10;
+        }
+
+        .hero-loaded .scroll-indicator {
+            opacity: 1;
+            transition-delay: 1.5s;
         }
 
         .scroll-indicator span {
@@ -889,6 +998,45 @@
         @keyframes scrollPulse {
             0%, 100% { opacity: 0.3; transform: scaleY(0.8); }
             50% { opacity: 1; transform: scaleY(1); }
+        }
+
+        .animation-paused .scroll-indicator::after {
+            animation-play-state: paused;
+        }
+
+        /* Magnetic nav links */
+        .nav-links a {
+            position: relative;
+            display: inline-block;
+            transition: color 0.3s var(--ease-out-quart), transform 0.2s var(--ease-out-quart);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: var(--accent-copper);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s var(--ease-out-expo);
+        }
+
+        .nav-links a:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        /* Enhanced card tilt */
+        .project-card {
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .project-card-inner {
+            transition: transform 0.4s var(--ease-out-expo);
         }
 
         /* Floating particles */
@@ -935,16 +1083,109 @@
             }
         }
 
-        /* Pause animations when tab is hidden */
-        .animation-paused .particle,
-        .animation-paused .scroll-indicator::after,
-        .animation-paused .hero-ray {
+        .animation-paused .particle {
             animation-play-state: paused;
         }
 
+        /* Nav entrance */
+        nav {
+            opacity: 0;
+            transform: translateX(-50%) translateY(-20px);
+            transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo);
+        }
+
+        .hero-loaded nav {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+            transition-delay: 1.3s;
+        }
+
+        /* Timeline item subtle glow on hover */
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            background: linear-gradient(135deg, var(--accent-copper-dim) 0%, transparent 50%);
+            border-radius: 20px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: -1;
+        }
+
+        .timeline-item:hover::after {
+            opacity: 1;
+        }
+
+        /* Theme tags shimmer */
+        .theme-tag {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .theme-tag::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(232, 147, 90, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .theme-tag:hover::before {
+            left: 100%;
+        }
+
+        /* Hero links stagger */
+        .hero-links a:nth-child(1) { transition-delay: 1.1s; }
+        .hero-links a:nth-child(2) { transition-delay: 1.2s; }
+        .hero-links a:nth-child(3) { transition-delay: 1.3s; }
+
+        .hero-loaded .hero-links a {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hero-links a {
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.4s var(--ease-out-expo), transform 0.5s var(--ease-out-expo), opacity 0.5s var(--ease-out-expo);
+        }
+
+        /* Footer link stagger on reveal */
+        .footer-links a:nth-child(1) { transition-delay: 0.1s; }
+        .footer-links a:nth-child(2) { transition-delay: 0.2s; }
+        .footer-links a:nth-child(3) { transition-delay: 0.3s; }
+
+        /* Section divider line */
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1px;
+            height: 60px;
+            background: linear-gradient(to bottom, transparent, var(--border-strong), transparent);
+        }
+
+        .section:first-of-type::before {
+            display: none;
+        }
+
+        /* Responsive adjustments for enhancements */
         @media (max-width: 768px) {
             .scroll-indicator {
                 bottom: 1rem;
+            }
+
+            .cursor-spotlight {
+                display: none;
+            }
+
+            .hero-loaded .hero-portrait {
+                opacity: 0.29;
             }
         }
     </style>
@@ -963,6 +1204,8 @@
         </div>
     </nav>
 
+    <div class="cursor-spotlight" aria-hidden="true"></div>
+
     <header id="hero" class="hero">
         <div class="hero-particles" aria-hidden="true">
             <div class="particle"></div>
@@ -976,7 +1219,7 @@
         </div>
         <div class="hero-ray"></div>
         <div class="hero-glow"></div>
-        <img src="images/ak-portrait.png" alt="" class="hero-portrait" aria-hidden="true">
+        <img src="images/headshot.jpg" alt="" class="hero-portrait" aria-hidden="true">
         <div class="container">
             <div class="hero-content">
                 <p class="hero-tagline"><span class="bracket">{</span> practising clarity <span class="bracket">}</span></p>
@@ -1190,14 +1433,109 @@
     </footer>
 
     <script>
-        // Pause animations when tab is hidden
-        document.addEventListener('visibilitychange', () => {
-            if (document.hidden) {
-                document.body.classList.add('animation-paused');
-            } else {
-                document.body.classList.remove('animation-paused');
+        // Hero entrance animation
+        (function() {
+            window.addEventListener('load', function() {
+                setTimeout(() => {
+                    document.body.classList.add('hero-loaded');
+                }, 100);
+            });
+        })();
+
+        // Cursor spotlight tracking
+        (function() {
+            const spotlight = document.querySelector('.cursor-spotlight');
+            if (!spotlight) return;
+
+            let mouseX = 0, mouseY = 0;
+            let spotlightX = 0, spotlightY = 0;
+            let animationId = null;
+            let isActive = true;
+
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+            }, { passive: true });
+
+            function animate() {
+                if (!isActive) return;
+
+                // Smooth lerp
+                spotlightX += (mouseX - spotlightX) * 0.08;
+                spotlightY += (mouseY - spotlightY) * 0.08;
+
+                // Use transform instead of left/top for GPU acceleration
+                spotlight.style.transform = `translate(${spotlightX - 200}px, ${spotlightY - 200}px)`;
+
+                animationId = requestAnimationFrame(animate);
             }
-        });
+
+            function startAnimation() {
+                if (!isActive) {
+                    isActive = true;
+                    animate();
+                }
+            }
+
+            function stopAnimation() {
+                isActive = false;
+                if (animationId) {
+                    cancelAnimationFrame(animationId);
+                    animationId = null;
+                }
+            }
+
+            // Stop animation when tab is hidden
+            document.addEventListener('visibilitychange', () => {
+                if (document.hidden) {
+                    stopAnimation();
+                    document.body.classList.add('animation-paused');
+                } else {
+                    document.body.classList.remove('animation-paused');
+                    startAnimation();
+                }
+            });
+
+            // Stop spotlight when scrolled past hero section
+            const heroSection = document.querySelector('.hero');
+            if (heroSection) {
+                window.addEventListener('scroll', () => {
+                    const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
+                    if (window.scrollY > heroBottom) {
+                        spotlight.classList.add('disabled');
+                    } else {
+                        spotlight.classList.remove('disabled');
+                    }
+                }, { passive: true });
+            }
+
+            animate();
+        })();
+
+        // Card tilt effect
+        (function() {
+            const cards = document.querySelectorAll('.project-card');
+
+            cards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+
+                    const rotateX = (y - centerY) / 20;
+                    const rotateY = (centerX - x) / 20;
+
+                    card.style.transform = `translateY(-8px) perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = '';
+                });
+            });
+        })();
 
         // Scroll indicator fade
         (function() {
@@ -1208,6 +1546,25 @@
                 const opacity = Math.max(0, 1 - (window.scrollY / 300));
                 indicator.style.opacity = opacity;
             }, { passive: true });
+        })();
+
+        // Magnetic nav links
+        (function() {
+            const navLinks = document.querySelectorAll('.nav-links a');
+
+            navLinks.forEach(link => {
+                link.addEventListener('mousemove', (e) => {
+                    const rect = link.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+
+                    link.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
+                });
+
+                link.addEventListener('mouseleave', () => {
+                    link.style.transform = '';
+                });
+            });
         })();
 
         // Intersection Observer for scroll reveals
@@ -1246,19 +1603,26 @@
             const aboutSection = document.querySelector('#about');
             if (!portrait || !portraitSection || !aboutSection) return;
 
+            // Cache layout values to avoid repeated reflows
+            let cachedValues = null;
+            let rafPending = false;
+
+            function cacheLayoutValues() {
+                cachedValues = {
+                    portraitHeight: portrait.offsetHeight,
+                    viewportHeight: window.innerHeight,
+                    sectionCenter: portraitSection.offsetTop + (portraitSection.offsetHeight / 2),
+                    maxBottom: aboutSection.offsetTop
+                };
+            }
+
             function updatePortraitPosition() {
-                const portraitHeight = portrait.offsetHeight;
-                const viewportHeight = window.innerHeight;
+                if (!cachedValues) cacheLayoutValues();
+
+                const { portraitHeight, viewportHeight, sectionCenter, maxBottom } = cachedValues;
                 const viewportCenter = viewportHeight / 2;
 
-                // Portrait section center in document coords
-                const sectionCenter = portraitSection.offsetTop + (portraitSection.offsetHeight / 2);
-
-                // Maximum position: portrait bottom at about section top
-                const maxBottom = aboutSection.offsetTop;
-
                 // Calculate where the portrait center should be in document coords
-                // Start at viewport center, but cap between section center and max position
                 const desiredCenter = window.scrollY + viewportCenter;
                 const clampedCenter = Math.max(sectionCenter, Math.min(desiredCenter, maxBottom - (portraitHeight / 2)));
 
@@ -1267,9 +1631,23 @@
 
                 portrait.style.top = topInViewport + 'px';
                 portrait.style.transform = 'translateX(-50%)';
+                rafPending = false;
             }
 
-            window.addEventListener('scroll', updatePortraitPosition, { passive: true });
+            function onScroll() {
+                if (!rafPending) {
+                    rafPending = true;
+                    requestAnimationFrame(updatePortraitPosition);
+                }
+            }
+
+            // Recache on resize
+            window.addEventListener('resize', () => {
+                cachedValues = null;
+            }, { passive: true });
+
+            window.addEventListener('scroll', onScroll, { passive: true });
+            cacheLayoutValues();
             updatePortraitPosition();
         })();
 
