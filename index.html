@@ -705,6 +705,157 @@
             transform: translateY(-3px);
         }
 
+        /* Writing — Early Work collection */
+        .writing-collection {
+            margin-top: 5rem;
+            padding-top: 4rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .collection-header {
+            margin-bottom: 3.5rem;
+        }
+
+        .collection-label {
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            color: var(--accent-copper);
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+
+        .collection-desc {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            max-width: 680px;
+            line-height: 1.7;
+        }
+
+        .writing-entry {
+            display: grid;
+            grid-template-columns: 100px 1fr;
+            gap: 0 3.5rem;
+            padding: 2.75rem 0;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .writing-entry:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .entry-year {
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            color: var(--accent-copper);
+            letter-spacing: 0.06em;
+            padding-top: 0.2rem;
+            opacity: 0.65;
+            white-space: nowrap;
+        }
+
+        .entry-title {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1.25rem;
+            letter-spacing: -0.01em;
+        }
+
+        .entry-text {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.78;
+            margin-bottom: 0.85rem;
+        }
+
+        .entry-text:last-of-type {
+            margin-bottom: 0;
+        }
+
+        .entry-theme {
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            color: var(--accent-sage);
+            font-style: italic;
+            margin-top: 1.25rem;
+            opacity: 0.75;
+        }
+
+        /* Early Work — interactive buttons */
+        .early-work-btn {
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            padding: 0.85rem 1.5rem;
+            background: var(--bg-glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            transition: all 0.4s var(--ease-out-expo);
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .early-work-btn:hover {
+            border-color: var(--accent-copper);
+            color: var(--accent-copper);
+            transform: translateY(-3px);
+        }
+
+        .early-work-btn.active {
+            border-color: var(--accent-copper);
+            color: var(--accent-copper);
+            background: var(--accent-copper-dim);
+            transform: translateY(-3px);
+        }
+
+        .ewb-year {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            opacity: 0.7;
+        }
+
+        .early-work-panel {
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 0.5s var(--ease-out-expo), margin-top 0.5s var(--ease-out-expo);
+            margin-top: 0;
+        }
+
+        .early-work-panel.open {
+            grid-template-rows: 1fr;
+            margin-top: 2.5rem;
+        }
+
+        .panel-inner {
+            overflow: hidden;
+        }
+
+        .entry-content {
+            display: none;
+            padding: 2.5rem 0 0.5rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .entry-content.active {
+            display: block;
+        }
+
+        .writing-ongoing {
+            margin-top: 4rem;
+            padding-top: 3rem;
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        .writing-ongoing .collection-desc {
+            margin-top: 0.75rem;
+        }
+
         /* Footer */
         footer {
             padding: 8rem 0;
@@ -834,6 +985,11 @@
                 flex-direction: column;
                 align-items: center;
                 gap: 1rem;
+            }
+
+            .writing-entry {
+                grid-template-columns: 1fr;
+                gap: 0.4rem 0;
             }
 
         }
@@ -1285,9 +1441,9 @@
                 <h2 class="section-title">ABOUT ME</h2>
             </div>
             <div class="about-content">
-                <p class="reveal reveal-delay-1">By day, I help businesses move things across borders, reliably and repeatedly. I've worked across operations, IT infrastructure, and commercial roles, which means I care as much about how systems behave under stress as I do about how they look on a slide. I'm drawn to work that compounds: subscriptions over one-offs, trust over tactics, long relationships over short wins.</p>
-                <p class="reveal reveal-delay-2">Outside of work, I run far more than is strictly necessary, read history and philosophy as if they were operating manuals, and tinker with code to stay honest about how technology actually works. I'm currently learning Rust, not to become a purist, but to remember what it feels like to think carefully again.</p>
-                <p class="reveal reveal-delay-3">I'm interested in logistics, climate, open-source technology, and the ways incentives quietly shape human behaviour. I believe discipline is a form of self-respect, that good systems reduce suffering, and that most problems get easier when you slow down enough to name them properly.</p>
+                <p class="reveal reveal-delay-1">By day, I help businesses move things across borders, reliably and repeatedly. I've worked across operations, IT infrastructure, and commercial roles, which means I care as much about how systems behave under consequence as I do about how they look on a slide. I'm drawn to work that compounds: subscriptions over one-offs, trust over tactics, long relationships over short wins.</p>
+                <p class="reveal reveal-delay-2">Outside of work, I run farther than is strictly necessary, read history and philosophy as operating manuals, and tinker with code to stay honest about how technology actually works. I'm currently learning Rust, not to become a purist, but to remember what it feels like to think carefully again.</p>
+                <p class="reveal reveal-delay-3">I'm interested in logistics, climate, and open-source technology, but my attention consistently returns to incentives: how they shape behaviour, distribute responsibility, and quietly determine outcomes. I believe discipline is a form of self-respect, that good systems reduce suffering, and that most problems become more tractable once they're named precisely.</p>
                 <p class="about-coda reveal reveal-delay-4">This site is a notebook, not a monument. A place for ideas in progress.</p>
             </div>
         </div>
@@ -1304,9 +1460,9 @@
             <div class="timeline">
                 <article class="timeline-item reveal">
                     <div class="timeline-meta">
-                        <h3 class="timeline-role">ACCOUNT REP</h3>
+                        <h3 class="timeline-role">COMMERCIAL</h3>
                         <span class="timeline-period">2023 – Present</span>
-                        <span class="timeline-dept">Commercial</span>
+                        <span class="timeline-dept">Account Rep</span>
                     </div>
                     <div class="timeline-content">
                         <p>I now work in commercial sales, managing a portfolio of recurring-revenue customers shipping internationally on an ongoing basis. The focus is on long-term relationships, solution design, and sustainable growth rather than transactional wins.</p>
@@ -1326,7 +1482,7 @@
                     <div class="timeline-meta">
                         <h3 class="timeline-role">IT INFRASTRUCTURE</h3>
                         <span class="timeline-period">2021 – 2023</span>
-                        <span class="timeline-dept">Western Canada</span>
+                        <span class="timeline-dept">Technical Lead</span>
                     </div>
                     <div class="timeline-content">
                         <p>From operations, I moved into IT infrastructure, becoming the primary point of responsibility for systems supporting DHL facilities across Western Canada. The work focused on uptime, networks, end-user support, and incident response in environments where failure immediately affected customers and staff.</p>
@@ -1414,12 +1570,57 @@
                 <p class="reveal reveal-delay-3">Some entries are polished. Many are not. All are attempts at precision.</p>
             </div>
 
-            <div class="themes-grid reveal reveal-delay-4">
-                <span class="theme-tag">Systems & reliability</span>
-                <span class="theme-tag">Work & incentives</span>
-                <span class="theme-tag">Endurance & patience</span>
-                <span class="theme-tag">Technology as tool</span>
-                <span class="theme-tag">Attention & restraint</span>
+            <div class="writing-collection reveal">
+                <div class="collection-header">
+                    <p class="collection-label">Early Work &bull; 2015–2019</p>
+                    <p class="collection-desc">These excerpts were written between 2015 and 2019 during my undergraduate studies in English, Philosophy, and Physics. The vocabulary was academic. The concerns were consistent: autonomy, legitimacy, institutional design, and the limits of certainty.</p>
+                </div>
+
+                <div class="themes-grid">
+                    <button class="early-work-btn" data-index="0"><span class="ewb-year">2015</span>Individual and Society</button>
+                    <button class="early-work-btn" data-index="1"><span class="ewb-year">2016</span>Evidence and Projection</button>
+                    <button class="early-work-btn" data-index="2"><span class="ewb-year">2018</span>Liberty and Indirect Harm</button>
+                    <button class="early-work-btn" data-index="3"><span class="ewb-year">2018</span>Punishment and Legitimacy</button>
+                    <button class="early-work-btn" data-index="4"><span class="ewb-year">2018</span>Institutions and Equality</button>
+                </div>
+
+                <div class="early-work-panel">
+                    <div class="panel-inner">
+                        <div class="entry-content" data-index="0">
+                            <h3 class="entry-title">Individual and Society</h3>
+                            <p class="entry-text">McCandless, like many of us, saw that the society he lived in was sick. It was sick with materialism and the unending desire to accumulate wealth. He sought to distance himself from that which he perceived to be corrupt. The journey he embarked upon was not one of escapism but one of self-authorship.</p>
+                            <p class="entry-theme">Early fascination with autonomy, materialism, and self-direction.</p>
+                        </div>
+                        <div class="entry-content" data-index="1">
+                            <h3 class="entry-title">Evidence and Projection</h3>
+                            <p class="entry-text">Bearing in mind that the precise definition of life remains nebulous and inexact yet, we attempt to go about finding biological materials or physical signals that would insinuate the existence of life beyond our planet. There are three modes of search currently being conducted on a large scale. These are encapsulate briefly by Chyba et al. They state that the aforementioned methods are (1) in situ search, within our solar system, potentially retrieving samples for further study on Earth; (2) spectral analysis of planetary and extrasolar planetary atmospheres for "…chemical evidence of life…" (34); (3) "searches for evidence of extraterrestrial technology." (34)</p>
+                            <p class="entry-text">However, until we find another 'isolated' system where life has begun from merely the chemical constituents that it is composed of and the materials indispensable to it, it is extremely difficult and dangerous to draw conclusions on the existence of extraterrestrial life based solely on probabilities and numbers. Whether we induce life in a laboratory or discover it on another extraterrestrial object, this is essential to our acceptance of the existence of extraterrestrial life. If we do not, we will be drawing conclusions based on projections, rather than observation. Projections have proven to be inaccurate heretofore and they can conceivably be inaccurate at present and in the future as well. As Carl Sagan said "it would be astonishing to me if there weren't extraterrestrial intelligence, but of course there is as yet no compelling evidence for it."</p>
+                            <p class="entry-theme">A turn toward epistemic restraint and methodological caution.</p>
+                        </div>
+                        <div class="entry-content" data-index="2">
+                            <h3 class="entry-title">Liberty and Indirect Harm</h3>
+                            <p class="entry-text">I do not agree with Mill's principle on when society can restrict the rights of the individual entirely. His argument that society has no standing to curtail the rights of the individual does not consider the different dangers arising from different unrestricted actions. As an example, according to Mill's principle, it is under no circumstances appropriate to outlaw actions that are not intended to harm others; consider a crowded marketplace, is it appropriate to yell that there is a snake or there is a fire if there is none? If the intent is merely to joke, then the actor did not intend to harm anyone, though his actions can be reasonably shown to have incited a panic and possibly a stampede. This can maim, if not kill, numerous people; the individual did not intend to cause this, but as this frenzy in the aftermath of yelling such statements is likely, I argue that it is our collective responsibility to discourage and outlaw such behaviour. We are permitted to restrict the rights of the individual, in so far as it has a likelihood of damaging the rights of others. Even if the intent is innocent, the outcome can be catastrophic. I say this only because we must not only consider if an individual's actions are likely to directly harm others, but whether they are as likely to cause indirect harm.</p>
+                            <p class="entry-text">I argue that this does represent a significant weakening of the "Harm Principle" as it concedes, right so, that it is acceptable to restrict actions should they pose a definite threat to society. Mill initially argued that there was no reason for society controlling the individual's exercise of their freedoms, regardless of their effect on themselves, unless it harms others. Mill weakens his absolute principle by allowing for nuance in considering the effects the individual's actions may have, indirectly, on the rest of society.</p>
+                            <p class="entry-theme">An early interest in edge cases, thresholds, and unintended consequences.</p>
+                        </div>
+                        <div class="entry-content" data-index="3">
+                            <h3 class="entry-title">Punishment and Legitimacy</h3>
+                            <p class="entry-text">A dangerous cycle of offend and reoffend is perpetuated by the imposition of collateral consequences that extend beyond the sentence handed down by the court. This harms the offender, their family, and society at large.</p>
+                            <p class="entry-text">Their very existence and imposition outside of the formal process of reprimand damages their legitimacy. Punishment must be proportionate to the crime committed and must be imposed through a transparent and recognised process.</p>
+                            <p class="entry-theme">Concern with proportionality, hidden punishment, and structural feedback loops.</p>
+                        </div>
+                        <div class="entry-content" data-index="4">
+                            <h3 class="entry-title">Institutions and Equality</h3>
+                            <p class="entry-text">The imposition of law does not guarantee equality if the institutions applying that law are shaped by unequal structures.</p>
+                            <p class="entry-theme">An early articulation of institutional scepticism.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="writing-ongoing reveal">
+                <p class="collection-label">Ongoing</p>
+                <p class="collection-desc">More work is being written. This section will grow.</p>
             </div>
         </div>
     </section>
@@ -1698,6 +1899,33 @@
             window.addEventListener('resize', function() {
                 clearTimeout(resizeTimeout);
                 resizeTimeout = setTimeout(setupMarquee, 250);
+            });
+        })();
+
+        // Early Work entry toggles
+        (function() {
+            const btns = document.querySelectorAll('.early-work-btn');
+            const panel = document.querySelector('.early-work-panel');
+            const contents = document.querySelectorAll('.entry-content');
+            if (!btns.length || !panel) return;
+
+            btns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const idx = btn.dataset.index;
+                    const isActive = btn.classList.contains('active');
+
+                    btns.forEach(b => b.classList.remove('active'));
+                    contents.forEach(c => c.classList.remove('active'));
+
+                    if (!isActive) {
+                        btn.classList.add('active');
+                        panel.classList.add('open');
+                        const target = panel.querySelector(`.entry-content[data-index="${idx}"]`);
+                        if (target) target.classList.add('active');
+                    } else {
+                        panel.classList.remove('open');
+                    }
+                });
             });
         })();
     </script>
