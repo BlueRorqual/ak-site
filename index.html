@@ -656,6 +656,31 @@
             color: var(--accent-sand);
         }
 
+        .card-stretched-link {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            border-radius: 20px;
+        }
+
+        .project-link {
+            display: inline-block;
+            margin-top: 1.25rem;
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            color: var(--accent-copper);
+            opacity: 0;
+            transform: translateY(4px);
+            transition: opacity 0.3s var(--ease-out-expo), transform 0.3s var(--ease-out-expo);
+            position: relative;
+            z-index: 2;
+        }
+
+        .project-card:hover .project-link {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         .project-description {
             font-size: 0.95rem;
             color: var(--text-secondary);
@@ -1532,26 +1557,16 @@
             <div class="projects-grid">
                 <article class="project-card reveal reveal-delay-1">
                     <span class="project-status">Ongoing</span>
-                    <h3 class="project-title">LEARNING RUST</h3>
-                    <p class="project-description">I'm learning Rust to stay close to how modern systems are built. It forces precision, rewards restraint, and makes trade-offs explicit. I'm less interested in mastery than in cultivating careful thinking.</p>
+                    <h3 class="project-title">TOOLS IN RUST</h3>
+                    <p class="project-description">I use Rust as a learning vehicle: building small tools to remove friction from workflows I actually use. The language rewards restraint and makes trade-offs explicit — which turns out to be exactly the right constraint for writing things that are narrow, practical, and reliable.</p>
                 </article>
 
                 <article class="project-card reveal reveal-delay-2">
+                    <a href="https://logisteer.ca" target="_blank" rel="noopener" class="card-stretched-link" aria-label="Visit logisteer.ca"></a>
                     <span class="project-status">Ongoing</span>
                     <h3 class="project-title">LOGISTICS AS A SYSTEM</h3>
-                    <p class="project-description">I help businesses reason about shipping, scale, and reliability. This work is usually informal: conversations, frameworks, and decisions rather than artefacts. The aim is clarity under constraint.</p>
-                </article>
-
-                <article class="project-card reveal reveal-delay-3">
-                    <span class="project-status">Intermittent</span>
-                    <h3 class="project-title">SMALL TOOLS</h3>
-                    <p class="project-description">I build simple tools to remove friction from repeat work. They're narrow, practical, and disposable. Their value lies in what they prevent.</p>
-                </article>
-
-                <article class="project-card reveal reveal-delay-4">
-                    <span class="project-status">Ongoing</span>
-                    <h3 class="project-title">NOTES IN PUBLIC</h3>
-                    <p class="project-description">This site is a working notebook. Ideas arrive unfinished and improve through use. I treat writing the same way I treat systems: as something that benefits from iteration.</p>
+                    <p class="project-description">A side project exploring what happens when you apply technology seriously to freight. Logistics is a systems problem, and most of the interesting work is still undone.</p>
+                    <span class="project-link">logisteer.ca →</span>
                 </article>
             </div>
         </div>
