@@ -144,8 +144,8 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            padding: 8rem 0 4rem;
+            justify-content: space-between;
+            padding: 8rem 0 0;
             position: relative;
             overflow: hidden;
         }
@@ -165,10 +165,10 @@
         }
 
         .hero-portrait {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            position: relative;
+            display: block;
+            margin: 0 auto;
+            align-self: center;
             width: 600px;
             height: auto;
             max-height: 90vh;
@@ -190,38 +190,8 @@
             z-index: 0;
         }
 
-        .hero-portrait.stuck {
-            position: fixed;
-        }
-
-        .portrait-section {
-            position: relative;
-            height: 15vh;
-            min-height: 100px;
-            margin-top: 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
         #about {
             padding-top: 4rem;
-        }
-
-        .portrait-anchor {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 1px;
-            height: 1px;
-        }
-
-        @media (max-width: 768px) {
-            .portrait-section {
-                height: 40vh;
-                min-height: 300px;
-            }
         }
 
         .hero-content {
@@ -1145,7 +1115,6 @@
 
     <header id="hero" class="hero">
         <div class="hero-glow"></div>
-        <img src="images/headshot.jpg" alt="" class="hero-portrait" aria-hidden="true">
         <div class="container">
             <div class="hero-content">
                 <p class="hero-tagline"><span class="bracket">{</span> practising clarity <span class="bracket">}</span></p>
@@ -1164,11 +1133,9 @@
                 </div>
             </div>
         </div>
+        <img src="images/headshot.jpg" alt="" class="hero-portrait" aria-hidden="true">
     </header>
 
-    <section class="portrait-section">
-        <div class="portrait-anchor"></div>
-    </section>
 
     <!--
     <div class="marquee-section">
