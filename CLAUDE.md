@@ -9,7 +9,7 @@ Personal site for Akhil Krishnan. Static HTML/CSS/JS, no build step. Hosted on G
 ```
 index.html          # Single-page site (all CSS and JS inline)
 images/             # Portrait and assets
-  headshot.jpg      # Hero portrait image
+  headshot.jpg      # Hero portrait image (1153×1536px, no sensitive EXIF)
 styles.css          # Unused legacy light theme (do not modify)
 versions/           # Historical versions (do not modify)
 ```
@@ -25,6 +25,13 @@ versions/           # Historical versions (do not modify)
 git push origin main
 git checkout gh-pages && git merge origin/main && git push origin gh-pages && git checkout main && git branch -d gh-pages
 ```
+
+## Version Tags
+
+| Tag | Description |
+|-----|-------------|
+| `v4-live-2026-02` | Pre-minimalist version with particles, ray, fixed portrait |
+| `v5-minimalist-2026-02` | First minimalist — removed particles/ray, mobile nav, proof lines |
 
 ## Design System
 
@@ -53,48 +60,69 @@ Use `var(--border)` for default, `var(--border-subtle)` for minimal, `var(--bord
 
 ### Glass effect
 
-Cards and nav use `var(--bg-glass)` + `backdrop-filter: blur()`.
+Cards and nav use `var(--bg-glass)` + `backdrop-filter: blur(10px)`. Nav uses `blur(12px)`.
 
 ## Portrait
 
-The hero portrait (`images/headshot.jpg`) is a fixed background element with layered CSS masks.
+The hero portrait (`images/headshot.jpg`) is a `position: relative` flex item at the bottom of the hero section, rendered after the hero text content in the DOM.
 
 ### Current settings
 
 ```css
+position: relative;
 opacity: 0.58;
 filter: brightness(1.25) contrast(1.12);
 mix-blend-mode: normal;
+mask-image: radial-gradient(ellipse 58% 66% at 50% 42%, #000 40%, transparent 78%);
+fetchpriority: high  /* on the img element */
 ```
 
-### Masking philosophy
+### Masking
 
-Three masks combined with `mask-composite: intersect`:
-
-1. **Vertical** (`linear-gradient to bottom`): Subtle top fade, solid through center, dissolves into About section at bottom
-2. **Horizontal** (`linear-gradient to right`): Soft side edges, solid center column
-3. **Radial** (`radial-gradient ellipse`): Centered high on face, keeps core crisp, softens corners
-
-Principles:
-- The top stays clean and confident. Eyes and face must remain clear.
-- The bottom sinks gently into darkness, transitioning into the About section.
-- The center is crisp. Only outer edges dissolve.
-- Subtle seam management, not cinematic atmosphere.
+Single radial gradient — no `mask-composite`. The 3-layer composite approach (`intersect` / `source-in`) was removed due to cross-browser inconsistency. The single radial keeps the face crisp in the centre and fades gracefully to transparent at all edges.
 
 ### Mobile
 
-Portrait opacity scales to ~50% of desktop value. Mobile hides cursor spotlight and nav links.
+Portrait opacity scales to `0.29` via `.hero-loaded .hero-portrait` override in mobile media query. Nav links hidden; mobile bottom pill nav shown instead.
+
+## Mobile Nav
+
+Fixed bottom pill navigation for viewports ≤ 768px. Implemented as `<div role="navigation">` (not `<nav>`) to avoid inheriting desktop `nav {}` CSS.
+
+```html
+<div class="mobile-nav" role="navigation" aria-label="Section navigation">
+    <a href="#about" class="mobile-nav-link">About</a>
+    <a href="#work" class="mobile-nav-link">Work</a>
+    <a href="#contact" class="mobile-nav-link">Contact</a>
+</div>
+```
 
 ## Animations
 
-- Hero entrance: orchestrated staggered reveals with `hero-loaded` class
-- Scroll reveals: `.reveal` class with IntersectionObserver
-- Cursor spotlight: follows mouse in hero section only, disabled past hero
-- Particles: CSS keyframe floating particles in hero
-- Card tilt: JS mousemove 3D perspective on project cards
-- Marquee: currently commented out
+Stripped to essentials only. All entrance choreography, particles, ray, cursor spotlight, card tilt, and scroll reveals have been removed.
 
-All animations pause when tab is hidden via `animation-paused` class.
+**What remains:**
+- Writing accordion: `grid-template-rows: 0fr → 1fr` CSS transition on click
+- Hover states: `color`, `border-color`, `box-shadow` transitions on links/cards (no transforms)
+- Smooth anchor scroll: JS `scrollIntoView`
+- Hero link entrance delays: `nth-child` stagger, cleared via `setTimeout` after 2s so hover is instant thereafter
+
+**What was removed:**
+- Hero entrance stagger (`hero-loaded` class orchestration) — all content visible on load
+- Scroll reveals (`.reveal` / IntersectionObserver)
+- Cursor spotlight
+- Floating particles
+- Rotating ray
+- Card 3D tilt (mousemove + perspective)
+- Magnetic nav links (mousemove translate)
+- Scroll indicator pulse
+
+## Performance Notes
+
+- `getBoundingClientRect()` cached on `mouseenter` for card tilt and magnetic nav (was causing reflows on every `mousemove`)
+- `IntersectionObserver` calls `unobserve()` after each reveal fires
+- `backdrop-filter` blur reduced from 20px to 12px on nav
+- Portrait has `fetchpriority="high"` for reliable LCP
 
 ## Commit Style
 
@@ -103,7 +131,7 @@ type: short description
 
 Optional body explaining why.
 
-Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>
+Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>
 ```
 
-Types: `style`, `fix`, `feat`, `perf`, `chore`
+Types: `style`, `fix`, `feat`, `perf`, `chore`, `refactor`
