@@ -144,8 +144,9 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            padding: 8rem 0 0;
+            justify-content: center;
+            gap: 3rem;
+            padding: 8rem 0 4rem;
             position: relative;
             overflow: hidden;
         }
@@ -176,16 +177,8 @@
             opacity: 0.58;
             filter: brightness(1.25) contrast(1.12);
             mix-blend-mode: normal;
-            mask-image:
-                linear-gradient(to bottom, transparent 0%, black 12%, black 55%, transparent 92%),
-                linear-gradient(to right, transparent 0%, black 18%, black 82%, transparent 100%),
-                radial-gradient(ellipse 60% 70% at 50% 40%, black 45%, transparent 80%);
-            -webkit-mask-image:
-                linear-gradient(to bottom, transparent 0%, black 12%, black 55%, transparent 92%),
-                linear-gradient(to right, transparent 0%, black 18%, black 82%, transparent 100%),
-                radial-gradient(ellipse 60% 70% at 50% 40%, black 45%, transparent 80%);
-            mask-composite: intersect;
-            -webkit-mask-composite: source-in;
+            mask-image: radial-gradient(ellipse 58% 66% at 50% 42%, #000 40%, transparent 78%);
+            -webkit-mask-image: radial-gradient(ellipse 58% 66% at 50% 42%, #000 40%, transparent 78%);
             pointer-events: none;
             z-index: 0;
         }
@@ -1028,7 +1021,7 @@
             left: 100%;
         }
 
-        /* Footer link stagger on reveal */
+        /* Footer link stagger on */
         .footer-links a:nth-child(1) { transition-delay: 0.1s; }
         .footer-links a:nth-child(2) { transition-delay: 0.2s; }
         .footer-links a:nth-child(3) { transition-delay: 0.3s; }
@@ -1133,7 +1126,7 @@
                 </div>
             </div>
         </div>
-        <img src="images/headshot.jpg" alt="" class="hero-portrait" aria-hidden="true">
+        <img src="images/headshot.jpg" alt="" class="hero-portrait" aria-hidden="true" fetchpriority="high">
     </header>
 
 
@@ -1162,29 +1155,29 @@
 
     <section id="about" class="section">
         <div class="container">
-            <div class="section-header reveal">
+            <div class="section-header">
                 <span class="section-number">01</span>
                 <h2 class="section-title">ABOUT ME</h2>
             </div>
             <div class="about-content">
-                <p class="reveal reveal-delay-1">By day, I help businesses move things across borders, reliably and repeatedly. I've worked across operations, IT infrastructure, and commercial roles, which means I care as much about how systems behave under stress as I do about how they look on a slide. I'm drawn to work that compounds: subscriptions over one-offs, trust over tactics, long relationships over short wins.</p>
-                <p class="reveal reveal-delay-2">Outside of work, I run farther than is strictly necessary, read history and philosophy as operating manuals, and tinker with code to stay honest about how technology actually works. I'm currently learning Rust, not to become a purist, but to remember what it feels like to think carefully again.</p>
-                <p class="reveal reveal-delay-3">I'm interested in logistics, climate, and open-source technology, but my attention consistently returns to incentives: how they shape behaviour, distribute responsibility, and quietly determine outcomes. I believe discipline is a form of self-respect, that good systems reduce suffering, and that most problems become more tractable once they're named precisely.</p>
-                <p class="about-coda reveal reveal-delay-4">This site is a notebook, not a monument. A place for ideas in progress.</p>
+                <p>By day, I help businesses move things across borders, reliably and repeatedly. I've worked across operations, IT infrastructure, and commercial roles, which means I care as much about how systems behave under stress as I do about how they look on a slide. I'm drawn to work that compounds: subscriptions over one-offs, trust over tactics, long relationships over short wins.</p>
+                <p>Outside of work, I run farther than is strictly necessary, read history and philosophy as operating manuals, and tinker with code to stay honest about how technology actually works. I'm currently learning Rust, not to become a purist, but to remember what it feels like to think carefully again.</p>
+                <p>I'm interested in logistics, climate, and open-source technology, but my attention consistently returns to incentives: how they shape behaviour, distribute responsibility, and quietly determine outcomes. I believe discipline is a form of self-respect, that good systems reduce suffering, and that most problems become more tractable once they're named precisely.</p>
+                <p class="about-coda">This site is a notebook, not a monument. A place for ideas in progress.</p>
             </div>
         </div>
     </section>
 
     <section id="work" class="section work-section">
         <div class="container">
-            <div class="section-header reveal">
+            <div class="section-header">
                 <span class="section-number">02</span>
                 <h2 class="section-title">WORK HISTORY</h2>
             </div>
-            <p class="section-intro reveal reveal-delay-1">I joined DHL from the ground up and moved deliberately through operations, infrastructure, and commercial roles. Each step added a new layer of perspective on how large systems actually work when theory meets pressure.</p>
+            <p class="section-intro">I joined DHL from the ground up and moved deliberately through operations, infrastructure, and commercial roles. Each step added a new layer of perspective on how large systems actually work when theory meets pressure.</p>
 
             <div class="timeline">
-                <article class="timeline-item reveal">
+                <article class="timeline-item">
                     <div class="timeline-meta">
                         <h3 class="timeline-role">COMMERCIAL</h3>
                         <span class="timeline-period">2023 – Present</span>
@@ -1204,7 +1197,7 @@
                     </div>
                 </article>
 
-                <article class="timeline-item reveal">
+                <article class="timeline-item">
                     <div class="timeline-meta">
                         <h3 class="timeline-role">IT INFRASTRUCTURE</h3>
                         <span class="timeline-period">2021 – 2023</span>
@@ -1224,7 +1217,7 @@
                     </div>
                 </article>
 
-                <article class="timeline-item reveal">
+                <article class="timeline-item">
                     <div class="timeline-meta">
                         <h3 class="timeline-role">OPERATIONS</h3>
                         <span class="timeline-period">2020 – 2021</span>
@@ -1249,20 +1242,20 @@
 
     <section id="projects" class="section">
         <div class="container">
-            <div class="section-header reveal">
+            <div class="section-header">
                 <span class="section-number">03</span>
                 <h2 class="section-title">PROJECTS</h2>
             </div>
-            <p class="section-intro reveal reveal-delay-1">I work on things that sharpen how I think. Some ship. Most teach.</p>
+            <p class="section-intro">I work on things that sharpen how I think. Some ship. Most teach.</p>
 
             <div class="projects-grid">
-                <article class="project-card reveal reveal-delay-1">
+                <article class="project-card">
                     <span class="project-status">Ongoing</span>
                     <h3 class="project-title">TOOLS IN RUST</h3>
                     <p class="project-description">I use Rust as a learning vehicle: building small tools to remove friction from workflows I actually use. The language rewards restraint and makes trade-offs explicit — which turns out to be exactly the right constraint for writing things that are narrow, practical, and reliable.</p>
                 </article>
 
-                <article class="project-card reveal reveal-delay-2">
+                <article class="project-card">
                     <a href="https://logisteer.ca" target="_blank" rel="noopener" class="card-stretched-link" aria-label="Visit logisteer.ca"></a>
                     <span class="project-status">Ongoing</span>
                     <h3 class="project-title">LOGISTICS AS A SYSTEM</h3>
@@ -1275,18 +1268,18 @@
 
     <section id="writing" class="section writing-section">
         <div class="container">
-            <div class="section-header reveal">
+            <div class="section-header">
                 <span class="section-number">04</span>
                 <h2 class="section-title">WRITING</h2>
             </div>
 
             <div class="writing-intro">
-                <p class="reveal reveal-delay-1">I write to clarify what I think. Publication is secondary.</p>
-                <p class="reveal reveal-delay-2">Most pieces sit somewhere between notes, essays, and field observations. They tend to return to the same themes: systems under pressure, discipline as self-respect, endurance, logistics, technology, and how incentives quietly shape behaviour.</p>
-                <p class="reveal reveal-delay-3">Some entries are polished. Many are not. All are attempts at precision.</p>
+                <p>I write to clarify what I think. Publication is secondary.</p>
+                <p>Most pieces sit somewhere between notes, essays, and field observations. They tend to return to the same themes: systems under pressure, discipline as self-respect, endurance, logistics, technology, and how incentives quietly shape behaviour.</p>
+                <p>Some entries are polished. Many are not. All are attempts at precision.</p>
             </div>
 
-            <div class="writing-collection reveal">
+            <div class="writing-collection">
                 <div class="collection-header">
                     <p class="collection-label">Early Work &bull; 2015–2019</p>
                     <p class="collection-desc">These excerpts were written between 2015 and 2019 during my physics degree, with coursework spanning philosophy, economics, and English. The vocabulary was academic. The concerns were consistent: autonomy, legitimacy, institutional design, and the limits of certainty.</p>
@@ -1334,7 +1327,7 @@
                 </div>
             </div>
 
-            <div class="writing-ongoing reveal">
+            <div class="writing-ongoing">
                 <p class="collection-label">Ongoing</p>
                 <p class="collection-desc">More work is being written. This section will grow.</p>
             </div>
@@ -1345,14 +1338,14 @@
         <div class="footer-glow"></div>
         <div class="container">
             <div class="footer-content">
-                <h2 class="footer-title reveal">LET'S CONNECT</h2>
-                <p class="footer-text reveal reveal-delay-1">I'm always open to thoughtful conversations about logistics, systems, or long-term work.</p>
-                <div class="footer-links reveal reveal-delay-2">
+                <h2 class="footer-title">LET'S CONNECT</h2>
+                <p class="footer-text">I'm always open to thoughtful conversations about logistics, systems, or long-term work.</p>
+                <div class="footer-links">
                     <a href="mailto:akkrishnan@pm.me" class="footer-link">Email</a>
                     <a href="https://github.com/BlueRorqual" target="_blank" rel="noopener" class="footer-link">GitHub</a>
                     <a href="https://linkedin.com/in/theakhilkrishnan" target="_blank" rel="noopener" class="footer-link">LinkedIn</a>
                 </div>
-                <p class="footer-copyright reveal reveal-delay-3">// Akhil Krishnan</p>
+                <p class="footer-copyright">// Akhil Krishnan</p>
             </div>
         </div>
     </footer>
