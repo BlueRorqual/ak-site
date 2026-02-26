@@ -150,27 +150,6 @@
             overflow: hidden;
         }
 
-        .hero-ray {
-            position: absolute;
-            top: -50%;
-            left: 50%;
-            width: 150%;
-            height: 150%;
-            background: conic-gradient(from -55deg at 50% 50%, transparent 300deg, var(--accent-copper-dim) 330deg, transparent 360deg);
-            opacity: 0.5;
-            animation: rayRotate 20s linear infinite;
-            will-change: transform;
-            pointer-events: none;
-        }
-
-        .animation-paused .hero-ray {
-            animation-play-state: paused;
-        }
-
-        @keyframes rayRotate {
-            from { transform: translateX(-50%) rotate(0deg); }
-            to { transform: translateX(-50%) rotate(360deg); }
-        }
 
         .hero-glow {
             position: absolute;
@@ -1017,6 +996,10 @@
                 gap: 0.4rem 0;
             }
 
+            footer {
+                padding-bottom: 6rem;
+            }
+
         }
 
         /* Focus states */
@@ -1228,53 +1211,6 @@
             transition: transform 0.4s var(--ease-out-expo);
         }
 
-        /* Floating particles */
-        .hero-particles {
-            position: absolute;
-            inset: 0;
-            overflow: hidden;
-            pointer-events: none;
-        }
-
-        .particle {
-            position: absolute;
-            width: 3px;
-            height: 3px;
-            background: var(--accent-copper);
-            border-radius: 50%;
-            opacity: 0;
-            animation: particleFloat 15s ease-in-out infinite;
-        }
-
-        .particle:nth-child(1) { left: 10%; animation-delay: 0s; }
-        .particle:nth-child(2) { left: 25%; animation-delay: 2s; }
-        .particle:nth-child(3) { left: 40%; animation-delay: 4s; }
-        .particle:nth-child(4) { left: 55%; animation-delay: 6s; }
-        .particle:nth-child(5) { left: 70%; animation-delay: 8s; }
-        .particle:nth-child(6) { left: 85%; animation-delay: 10s; }
-        .particle:nth-child(7) { left: 15%; animation-delay: 1s; }
-        .particle:nth-child(8) { left: 60%; animation-delay: 3s; }
-
-        @keyframes particleFloat {
-            0% {
-                transform: translateY(100vh) scale(0);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.6;
-            }
-            90% {
-                opacity: 0.6;
-            }
-            100% {
-                transform: translateY(-100px) scale(1);
-                opacity: 0;
-            }
-        }
-
-        .animation-paused .particle {
-            animation-play-state: paused;
-        }
 
         /* Nav entrance */
         nav {
@@ -1377,6 +1313,48 @@
                 opacity: 0.29;
             }
         }
+
+        /* Mobile bottom nav */
+        .mobile-nav {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-nav {
+                display: flex;
+                position: fixed;
+                bottom: 1.25rem;
+                left: 50%;
+                transform: translateX(-50%);
+                background: var(--bg-glass);
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                border: 1px solid var(--border-strong);
+                border-radius: 100px;
+                padding: 0.35rem;
+                gap: 0.15rem;
+                z-index: 1000;
+            }
+
+            .mobile-nav-link {
+                font-family: var(--font-mono);
+                font-size: 0.65rem;
+                color: var(--text-muted);
+                text-decoration: none;
+                padding: 0.5rem 0.9rem;
+                border-radius: 100px;
+                transition: all 0.3s var(--ease-out-expo);
+                letter-spacing: 0.06em;
+                text-transform: uppercase;
+                white-space: nowrap;
+            }
+
+            .mobile-nav-link:hover,
+            .mobile-nav-link:active {
+                color: var(--accent-copper);
+                background: var(--accent-copper-dim);
+            }
+        }
     </style>
 </head>
 <body>
@@ -1396,17 +1374,6 @@
     <div class="cursor-spotlight" aria-hidden="true"></div>
 
     <header id="hero" class="hero">
-        <div class="hero-particles" aria-hidden="true">
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-        </div>
-        <div class="hero-ray"></div>
         <div class="hero-glow"></div>
         <img src="images/headshot.jpg" alt="" class="hero-portrait" aria-hidden="true">
         <div class="container">
@@ -1466,7 +1433,7 @@
                 <h2 class="section-title">ABOUT ME</h2>
             </div>
             <div class="about-content">
-                <p class="reveal reveal-delay-1">By day, I help businesses move things across borders, reliably and repeatedly. I've worked across operations, IT infrastructure, and commercial roles, which means I care as much about how systems behave under consequence as I do about how they look on a slide. I'm drawn to work that compounds: subscriptions over one-offs, trust over tactics, long relationships over short wins.</p>
+                <p class="reveal reveal-delay-1">By day, I help businesses move things across borders, reliably and repeatedly. I've worked across operations, IT infrastructure, and commercial roles, which means I care as much about how systems behave under stress as I do about how they look on a slide. I'm drawn to work that compounds: subscriptions over one-offs, trust over tactics, long relationships over short wins.</p>
                 <p class="reveal reveal-delay-2">Outside of work, I run farther than is strictly necessary, read history and philosophy as operating manuals, and tinker with code to stay honest about how technology actually works. I'm currently learning Rust, not to become a purist, but to remember what it feels like to think carefully again.</p>
                 <p class="reveal reveal-delay-3">I'm interested in logistics, climate, and open-source technology, but my attention consistently returns to incentives: how they shape behaviour, distribute responsibility, and quietly determine outcomes. I believe discipline is a form of self-respect, that good systems reduce suffering, and that most problems become more tractable once they're named precisely.</p>
                 <p class="about-coda reveal reveal-delay-4">This site is a notebook, not a monument. A place for ideas in progress.</p>
@@ -1491,7 +1458,7 @@
                     </div>
                     <div class="timeline-content">
                         <p>I now work in commercial sales, managing a portfolio of recurring-revenue customers shipping internationally on an ongoing basis. The focus is on long-term relationships, solution design, and sustainable growth rather than transactional wins.</p>
-                        <p>My background in operations and infrastructure informs how I sell: with an eye toward feasibility, system impact, and trust over time.</p>
+                        <p>My background in operations and infrastructure informs how I sell: with an eye toward feasibility, system impact, and trust over time. 120 accounts, $1.6M in recurring revenue — highest new customer acquisition and revenue growth on the team in both 2024 and 2025.</p>
                         <div class="timeline-learnings">
                             <h4>What I'm learning</h4>
                             <ul>
@@ -1510,7 +1477,7 @@
                         <span class="timeline-dept">Technical Lead</span>
                     </div>
                     <div class="timeline-content">
-                        <p>From operations, I moved into IT infrastructure, becoming the primary point of responsibility for systems supporting DHL facilities across Western Canada. The work focused on uptime, networks, end-user support, and incident response in environments where failure immediately affected customers and staff.</p>
+                        <p>From operations, I moved into IT infrastructure, becoming the primary point of responsibility for systems supporting DHL facilities across Western Canada. 10 facilities, ~400 end users. The work focused on uptime, networks, end-user support, and incident response in environments where failure immediately affected customers and staff.</p>
                         <p>I worked closely with Operations teams, translating technical constraints into practical solutions and learning how organisational systems behave under stress.</p>
                         <div class="timeline-learnings">
                             <h4>What I learnt</h4>
@@ -1530,7 +1497,7 @@
                         <span class="timeline-dept">Courier</span>
                     </div>
                     <div class="timeline-content">
-                        <p>I started in operations, moving shipments and working directly inside time-critical logistics. This was the business in its most physical form: routes, deadlines, handoffs, and no room for abstraction. Every delay had a face. Every success was quiet and procedural.</p>
+                        <p>I started in operations, moving shipments and working directly inside time-critical logistics during COVID peak. This was the business in its most physical form: routes, deadlines, handoffs, and no room for abstraction. Every delay had a face. Every success was quiet and procedural. Route plans I developed were later adopted by the training team as reference material for new hires.</p>
                         <div class="timeline-learnings">
                             <h4>What I learnt</h4>
                             <ul>
@@ -1588,7 +1555,7 @@
             <div class="writing-collection reveal">
                 <div class="collection-header">
                     <p class="collection-label">Early Work &bull; 2015–2019</p>
-                    <p class="collection-desc">These excerpts were written between 2015 and 2019 during my undergraduate studies in English, Philosophy, and Physics. The vocabulary was academic. The concerns were consistent: autonomy, legitimacy, institutional design, and the limits of certainty.</p>
+                    <p class="collection-desc">These excerpts were written between 2015 and 2019 during my physics degree, with coursework spanning philosophy, economics, and English. The vocabulary was academic. The concerns were consistent: autonomy, legitimacy, institutional design, and the limits of certainty.</p>
                 </div>
 
                 <div class="themes-grid">
@@ -1924,25 +1891,47 @@
             const contents = document.querySelectorAll('.entry-content');
             if (!btns.length || !panel) return;
 
+            function openEntry(idx, scroll) {
+                btns.forEach(b => b.classList.remove('active'));
+                contents.forEach(c => c.classList.remove('active'));
+                const btn = document.querySelector(`.early-work-btn[data-index="${idx}"]`);
+                const target = panel.querySelector(`.entry-content[data-index="${idx}"]`);
+                if (btn) btn.classList.add('active');
+                panel.classList.add('open');
+                if (target) target.classList.add('active');
+                if (scroll) {
+                    setTimeout(() => {
+                        panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }, 120);
+                }
+            }
+
             btns.forEach(btn => {
                 btn.addEventListener('click', () => {
                     const idx = btn.dataset.index;
                     const isActive = btn.classList.contains('active');
-
-                    btns.forEach(b => b.classList.remove('active'));
-                    contents.forEach(c => c.classList.remove('active'));
-
-                    if (!isActive) {
-                        btn.classList.add('active');
-                        panel.classList.add('open');
-                        const target = panel.querySelector(`.entry-content[data-index="${idx}"]`);
-                        if (target) target.classList.add('active');
-                    } else {
+                    if (isActive) {
+                        btns.forEach(b => b.classList.remove('active'));
+                        contents.forEach(c => c.classList.remove('active'));
                         panel.classList.remove('open');
+                    } else {
+                        openEntry(idx, true);
                     }
                 });
             });
+
+            // Default: open first entry without scroll animation
+            panel.style.transition = 'none';
+            openEntry('0', false);
+            requestAnimationFrame(() => { panel.style.transition = ''; });
         })();
     </script>
+
+    <div class="mobile-nav" role="navigation" aria-label="Section navigation">
+        <a href="#about" class="mobile-nav-link">About</a>
+        <a href="#work" class="mobile-nav-link">Work</a>
+        <a href="#projects" class="mobile-nav-link">Projects</a>
+        <a href="#writing" class="mobile-nav-link">Writing</a>
+    </div>
 </body>
 </html>
