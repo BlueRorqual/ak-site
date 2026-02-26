@@ -188,11 +188,6 @@
             -webkit-mask-composite: source-in;
             pointer-events: none;
             z-index: 0;
-            will-change: transform, top;
-        }
-
-        .animation-paused .hero-portrait {
-            transition: none;
         }
 
         .hero-portrait.stuck {
@@ -315,17 +310,6 @@
             height: 18px;
         }
 
-        @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
         /* Marquee - Infinite scroll */
         .marquee-section {
             padding: 2rem 0;
@@ -379,10 +363,6 @@
         @keyframes scroll {
             from { transform: translateX(0); }
             to { transform: translateX(-50%); }
-        }
-
-        .animation-paused .marquee-track {
-            animation-play-state: paused;
         }
 
         /* Section styling */
@@ -1010,179 +990,15 @@
             outline-offset: 4px;
         }
 
-        /* Scroll animations */
-        .reveal {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo);
-        }
-
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .reveal-delay-1 { transition-delay: 0.1s; }
-        .reveal-delay-2 { transition-delay: 0.2s; }
-        .reveal-delay-3 { transition-delay: 0.3s; }
-        .reveal-delay-4 { transition-delay: 0.4s; }
+        /* Scroll animations — removed; content visible by default */
 
         /* === ENHANCEMENTS === */
 
-        /* Cursor spotlight */
-        .cursor-spotlight {
-            position: fixed;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, var(--accent-copper-dim) 0%, transparent 70%);
-            pointer-events: none;
-            z-index: 1;
-            opacity: 0;
-            left: 0;
-            top: 0;
-            will-change: transform;
-            transition: opacity 0.5s ease;
-            filter: blur(30px);
-        }
-
-        body:hover .cursor-spotlight {
-            opacity: 0.4;
-        }
-
-        .cursor-spotlight.disabled {
-            opacity: 0 !important;
-        }
-
-        /* Hero entrance orchestration */
-        .hero-content {
-            opacity: 0;
-        }
-
-        .hero-loaded .hero-content {
-            opacity: 1;
-        }
-
-        .hero-tagline {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo);
-        }
-
-        .hero-loaded .hero-tagline {
-            opacity: 1;
-            transform: translateY(0);
-            transition-delay: 0.3s;
-        }
-
-        .hero-name {
-            opacity: 0;
-            clip-path: inset(0 100% 0 0);
-            transition: clip-path 1s var(--ease-out-expo), opacity 0.01s;
-        }
-
-        .hero-loaded .hero-name {
-            opacity: 1;
-            clip-path: inset(0 0% 0 0);
-            transition-delay: 0.5s;
-        }
-
-        .hero-name span {
-            display: block;
-            opacity: 0;
-            clip-path: inset(0 100% 0 0);
-            transition: clip-path 1s var(--ease-out-expo), opacity 0.01s;
-        }
-
-        .hero-loaded .hero-name span {
-            opacity: 1;
-            clip-path: inset(0 0% 0 0);
-            transition-delay: 0.7s;
-        }
-
-        .hero-intro {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo);
-        }
-
-        .hero-loaded .hero-intro {
-            opacity: 1;
-            transform: translateY(0);
-            transition-delay: 0.9s;
-        }
-
-        .hero-links {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo);
-        }
-
-        .hero-loaded .hero-links {
-            opacity: 1;
-            transform: translateY(0);
-            transition-delay: 1.1s;
-        }
-
-        .hero-portrait {
-            opacity: 0;
-            transition: opacity 1.5s ease, filter 0.3s ease;
-        }
-
-        .hero-loaded .hero-portrait {
-            opacity: 0.58;
-            transition-delay: 0.2s;
-        }
-
-        /* Scroll indicator */
-        .scroll-indicator {
-            position: absolute;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
-            opacity: 0;
-            transition: opacity 0.8s ease;
-            z-index: 10;
-        }
-
-        .hero-loaded .scroll-indicator {
-            opacity: 1;
-            transition-delay: 1.5s;
-        }
-
-        .scroll-indicator span {
-            font-family: var(--font-mono);
-            font-size: 0.65rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--text-muted);
-        }
-
-        .scroll-indicator::after {
-            content: '';
-            width: 1px;
-            height: 40px;
-            background: linear-gradient(to bottom, var(--accent-copper), transparent);
-            animation: scrollPulse 2s ease-in-out infinite;
-        }
-
-        @keyframes scrollPulse {
-            0%, 100% { opacity: 0.3; transform: scaleY(0.8); }
-            50% { opacity: 1; transform: scaleY(1); }
-        }
-
-        .animation-paused .scroll-indicator::after {
-            animation-play-state: paused;
-        }
-
-        /* Magnetic nav links */
+        /* Nav links underline effect */
         .nav-links a {
             position: relative;
             display: inline-block;
-            transition: color 0.3s var(--ease-out-quart), transform 0.2s var(--ease-out-quart);
+            transition: color 0.3s var(--ease-out-quart);
         }
 
         .nav-links a::after {
@@ -1203,29 +1019,7 @@
             transform-origin: left;
         }
 
-        /* Enhanced card tilt */
-        .project-card {
-            transform-style: preserve-3d;
-            perspective: 1000px;
-        }
-
-        .project-card-inner {
-            transition: transform 0.4s var(--ease-out-expo);
-        }
-
-
-        /* Nav entrance */
-        nav {
-            opacity: 0;
-            transform: translateX(-50%) translateY(-20px);
-            transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo);
-        }
-
-        .hero-loaded nav {
-            opacity: 1;
-            transform: translateX(-50%) translateY(0);
-            transition-delay: 1.3s;
-        }
+        /* Timeline item subtle glow on hover */
 
         /* Timeline item subtle glow on hover */
         .timeline-item::after {
@@ -1264,23 +1058,6 @@
             left: 100%;
         }
 
-        /* Hero links stagger */
-        .hero-links a:nth-child(1) { transition-delay: 1.1s; }
-        .hero-links a:nth-child(2) { transition-delay: 1.2s; }
-        .hero-links a:nth-child(3) { transition-delay: 1.3s; }
-
-
-        .hero-loaded .hero-links a {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .hero-links a {
-            opacity: 0;
-            transform: translateY(10px);
-            transition: all 0.4s var(--ease-out-expo), transform 0.5s var(--ease-out-expo), opacity 0.5s var(--ease-out-expo);
-        }
-
         /* Footer link stagger on reveal */
         .footer-links a:nth-child(1) { transition-delay: 0.1s; }
         .footer-links a:nth-child(2) { transition-delay: 0.2s; }
@@ -1304,15 +1081,7 @@
 
         /* Responsive adjustments for enhancements */
         @media (max-width: 768px) {
-            .scroll-indicator {
-                bottom: 1rem;
-            }
-
-            .cursor-spotlight {
-                display: none;
-            }
-
-            .hero-loaded .hero-portrait {
+            .hero-portrait {
                 opacity: 0.29;
             }
         }
@@ -1374,8 +1143,6 @@
         </div>
     </nav>
 
-    <div class="cursor-spotlight" aria-hidden="true"></div>
-
     <header id="hero" class="hero">
         <div class="hero-glow"></div>
         <img src="images/headshot.jpg" alt="" class="hero-portrait" aria-hidden="true">
@@ -1394,9 +1161,6 @@
                     <a href="https://linkedin.com/in/theakhilkrishnan" target="_blank" rel="noopener" aria-label="LinkedIn">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
                     </a>
-                </div>
-                <div class="scroll-indicator">
-                    <span>Scroll</span>
                 </div>
             </div>
         </div>
@@ -1627,173 +1391,6 @@
     </footer>
 
     <script>
-        // Hero entrance animation
-        (function() {
-            window.addEventListener('load', function() {
-                setTimeout(() => {
-                    document.body.classList.add('hero-loaded');
-                    // Clear stagger delays after entrance completes so hover is instant
-                    setTimeout(() => {
-                        document.querySelectorAll('.hero-links a').forEach(el => {
-                            el.style.transitionDelay = '0s';
-                        });
-                    }, 2000);
-                }, 100);
-            });
-        })();
-
-        // Cursor spotlight tracking
-        (function() {
-            const spotlight = document.querySelector('.cursor-spotlight');
-            if (!spotlight) return;
-
-            let mouseX = 0, mouseY = 0;
-            let spotlightX = 0, spotlightY = 0;
-            let animationId = null;
-            let isActive = true;
-
-            document.addEventListener('mousemove', (e) => {
-                mouseX = e.clientX;
-                mouseY = e.clientY;
-            }, { passive: true });
-
-            function animate() {
-                if (!isActive) return;
-
-                // Smooth lerp
-                spotlightX += (mouseX - spotlightX) * 0.08;
-                spotlightY += (mouseY - spotlightY) * 0.08;
-
-                // Use transform instead of left/top for GPU acceleration
-                spotlight.style.transform = `translate(${spotlightX - 200}px, ${spotlightY - 200}px)`;
-
-                animationId = requestAnimationFrame(animate);
-            }
-
-            function startAnimation() {
-                if (!isActive) {
-                    isActive = true;
-                    animate();
-                }
-            }
-
-            function stopAnimation() {
-                isActive = false;
-                if (animationId) {
-                    cancelAnimationFrame(animationId);
-                    animationId = null;
-                }
-            }
-
-            // Stop animation when tab is hidden
-            document.addEventListener('visibilitychange', () => {
-                if (document.hidden) {
-                    stopAnimation();
-                    document.body.classList.add('animation-paused');
-                } else {
-                    document.body.classList.remove('animation-paused');
-                    startAnimation();
-                }
-            });
-
-            // Stop spotlight when scrolled past hero section
-            const heroSection = document.querySelector('.hero');
-            if (heroSection) {
-                window.addEventListener('scroll', () => {
-                    const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
-                    if (window.scrollY > heroBottom) {
-                        spotlight.classList.add('disabled');
-                    } else {
-                        spotlight.classList.remove('disabled');
-                    }
-                }, { passive: true });
-            }
-
-            animate();
-        })();
-
-        // Card tilt effect
-        (function() {
-            const cards = document.querySelectorAll('.project-card');
-
-            cards.forEach(card => {
-                let cachedRect = null;
-                card.addEventListener('mouseenter', () => {
-                    cachedRect = card.getBoundingClientRect();
-                });
-                card.addEventListener('mousemove', (e) => {
-                    const rect = cachedRect || card.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-
-                    const centerX = rect.width / 2;
-                    const centerY = rect.height / 2;
-
-                    const rotateX = (y - centerY) / 20;
-                    const rotateY = (centerX - x) / 20;
-
-                    card.style.transform = `translateY(-8px) perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-                });
-
-                card.addEventListener('mouseleave', () => {
-                    card.style.transform = '';
-                });
-            });
-        })();
-
-        // Scroll indicator fade
-        (function() {
-            const indicator = document.querySelector('.scroll-indicator');
-            if (!indicator) return;
-
-            window.addEventListener('scroll', () => {
-                const opacity = Math.max(0, 1 - (window.scrollY / 300));
-                indicator.style.opacity = opacity;
-            }, { passive: true });
-        })();
-
-        // Magnetic nav links
-        (function() {
-            const navLinks = document.querySelectorAll('.nav-links a');
-
-            navLinks.forEach(link => {
-                let cachedRect = null;
-                link.addEventListener('mouseenter', () => {
-                    cachedRect = link.getBoundingClientRect();
-                });
-                link.addEventListener('mousemove', (e) => {
-                    const rect = cachedRect || link.getBoundingClientRect();
-                    const x = e.clientX - rect.left - rect.width / 2;
-                    const y = e.clientY - rect.top - rect.height / 2;
-
-                    link.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
-                });
-
-                link.addEventListener('mouseleave', () => {
-                    link.style.transform = '';
-                });
-            });
-        })();
-
-        // Intersection Observer for scroll reveals
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -80px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.reveal').forEach(el => {
-            observer.observe(el);
-        });
-
         // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
@@ -1804,103 +1401,6 @@
                 }
             });
         });
-
-        // Portrait scroll behavior - scrolls into portrait section, stops before about
-        (function() {
-            const portrait = document.querySelector('.hero-portrait');
-            const portraitSection = document.querySelector('.portrait-section');
-            const aboutSection = document.querySelector('#about');
-            if (!portrait || !portraitSection || !aboutSection) return;
-
-            // Cache layout values to avoid repeated reflows
-            let cachedValues = null;
-            let rafPending = false;
-
-            function cacheLayoutValues() {
-                cachedValues = {
-                    portraitHeight: portrait.offsetHeight,
-                    viewportHeight: window.innerHeight,
-                    sectionCenter: portraitSection.offsetTop + (portraitSection.offsetHeight / 2),
-                    maxBottom: aboutSection.offsetTop
-                };
-            }
-
-            function updatePortraitPosition() {
-                if (!cachedValues) cacheLayoutValues();
-
-                const { portraitHeight, viewportHeight, sectionCenter, maxBottom } = cachedValues;
-                const viewportCenter = viewportHeight / 2;
-
-                // Calculate where the portrait center should be in document coords
-                const desiredCenter = window.scrollY + viewportCenter;
-                const clampedCenter = Math.max(sectionCenter, Math.min(desiredCenter, maxBottom - (portraitHeight / 2)));
-
-                // Convert to viewport-relative top position
-                const topInViewport = clampedCenter - (portraitHeight / 2) - window.scrollY;
-
-                portrait.style.top = topInViewport + 'px';
-                portrait.style.transform = 'translateX(-50%)';
-                rafPending = false;
-            }
-
-            function onScroll() {
-                if (!rafPending) {
-                    rafPending = true;
-                    requestAnimationFrame(updatePortraitPosition);
-                }
-            }
-
-            // Recache on resize
-            window.addEventListener('resize', () => {
-                cachedValues = null;
-            }, { passive: true });
-
-            window.addEventListener('scroll', onScroll, { passive: true });
-            cacheLayoutValues();
-            updatePortraitPosition();
-        })();
-
-        // Infinite marquee - clone content to fill viewport
-        (function() {
-            const track = document.querySelector('.marquee-track');
-            if (!track) return;
-
-            // Get the original content (first one only)
-            const originalContent = track.querySelector('.marquee-content');
-            if (!originalContent) return;
-
-            // Only run once on load, not on resize
-            function setupMarquee() {
-                const contentWidth = originalContent.offsetWidth;
-                if (contentWidth === 0) return;
-
-                const viewportWidth = window.innerWidth;
-                const clonesNeeded = Math.ceil((viewportWidth * 2) / contentWidth) + 1;
-
-                // Remove any previously added clones (keep first 2 from HTML)
-                const allContent = track.querySelectorAll('.marquee-content');
-                allContent.forEach((el, i) => {
-                    if (i >= 2) el.remove();
-                });
-
-                // Add clones if needed
-                for (let i = 0; i < clonesNeeded; i++) {
-                    const clone = originalContent.cloneNode(true);
-                    clone.setAttribute('aria-hidden', 'true');
-                    track.appendChild(clone);
-                }
-            }
-
-            // Run once on load
-            setupMarquee();
-
-            // Debounced resize handler
-            let resizeTimeout;
-            window.addEventListener('resize', function() {
-                clearTimeout(resizeTimeout);
-                resizeTimeout = setTimeout(setupMarquee, 250);
-            });
-        })();
 
         // Early Work entry toggles
         (function() {
