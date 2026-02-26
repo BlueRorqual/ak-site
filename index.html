@@ -94,8 +94,8 @@
             z-index: 100;
             padding: 0.75rem 1.5rem;
             background: var(--bg-glass);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             border: 1px solid var(--border);
             border-radius: 100px;
         }
@@ -306,6 +306,8 @@
             color: var(--accent-copper);
             transform: translateY(-4px) scale(1.05);
             box-shadow: 0 12px 32px var(--accent-copper-dim);
+            transition-delay: 0s;
+            transition: color 0s, border-color 0s, transform 0.25s var(--ease-out-expo), box-shadow 0.25s var(--ease-out-expo);
         }
 
         .hero-links svg {
@@ -1267,6 +1269,7 @@
         .hero-links a:nth-child(2) { transition-delay: 1.2s; }
         .hero-links a:nth-child(3) { transition-delay: 1.3s; }
 
+
         .hero-loaded .hero-links a {
             opacity: 1;
             transform: translateY(0);
@@ -1629,6 +1632,12 @@
             window.addEventListener('load', function() {
                 setTimeout(() => {
                     document.body.classList.add('hero-loaded');
+                    // Clear stagger delays after entrance completes so hover is instant
+                    setTimeout(() => {
+                        document.querySelectorAll('.hero-links a').forEach(el => {
+                            el.style.transitionDelay = '0s';
+                        });
+                    }, 2000);
                 }, 100);
             });
         })();
@@ -1708,8 +1717,12 @@
             const cards = document.querySelectorAll('.project-card');
 
             cards.forEach(card => {
+                let cachedRect = null;
+                card.addEventListener('mouseenter', () => {
+                    cachedRect = card.getBoundingClientRect();
+                });
                 card.addEventListener('mousemove', (e) => {
-                    const rect = card.getBoundingClientRect();
+                    const rect = cachedRect || card.getBoundingClientRect();
                     const x = e.clientX - rect.left;
                     const y = e.clientY - rect.top;
 
@@ -1744,8 +1757,12 @@
             const navLinks = document.querySelectorAll('.nav-links a');
 
             navLinks.forEach(link => {
+                let cachedRect = null;
+                link.addEventListener('mouseenter', () => {
+                    cachedRect = link.getBoundingClientRect();
+                });
                 link.addEventListener('mousemove', (e) => {
-                    const rect = link.getBoundingClientRect();
+                    const rect = cachedRect || link.getBoundingClientRect();
                     const x = e.clientX - rect.left - rect.width / 2;
                     const y = e.clientY - rect.top - rect.height / 2;
 
@@ -1768,6 +1785,7 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
                 }
             });
         }, observerOptions);
@@ -1920,18 +1938,14 @@
                 });
             });
 
-            // Default: open first entry without scroll animation
-            panel.style.transition = 'none';
-            openEntry('0', false);
-            requestAnimationFrame(() => { panel.style.transition = ''; });
+
         })();
     </script>
 
     <div class="mobile-nav" role="navigation" aria-label="Section navigation">
         <a href="#about" class="mobile-nav-link">About</a>
         <a href="#work" class="mobile-nav-link">Work</a>
-        <a href="#projects" class="mobile-nav-link">Projects</a>
-        <a href="#writing" class="mobile-nav-link">Writing</a>
+        <a href="#contact" class="mobile-nav-link">Contact</a>
     </div>
 </body>
 </html>
