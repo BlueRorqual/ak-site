@@ -10,8 +10,7 @@ Personal site for Akhil Krishnan. Static HTML/CSS/JS, no build step. Hosted on G
 index.html          # Single-page site (all CSS and JS inline)
 images/             # Portrait and assets
   headshot.jpg      # Hero portrait image (1153×1536px, no sensitive EXIF)
-styles.css          # Unused legacy light theme (do not modify)
-versions/           # Historical versions (do not modify)
+favicon.svg         # AK monogram, copper-on-charcoal
 ```
 
 ## Deployment
@@ -119,9 +118,7 @@ Stripped to essentials only. All entrance choreography, particles, ray, cursor s
 
 ## Performance Notes
 
-- `getBoundingClientRect()` cached on `mouseenter` for card tilt and magnetic nav (was causing reflows on every `mousemove`)
-- `IntersectionObserver` calls `unobserve()` after each reveal fires
-- `backdrop-filter` blur reduced from 20px to 12px on nav
+- `backdrop-filter` blur: 12px on nav
 - Portrait has `fetchpriority="high"` for reliable LCP
 
 ## Commit Style
