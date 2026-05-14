@@ -84,6 +84,30 @@ Single radial gradient — no `mask-composite`. The 3-layer composite approach (
 
 Portrait opacity scales to `0.29` via `.hero-loaded .hero-portrait` override in mobile media query. Nav links hidden; mobile bottom pill nav shown instead.
 
+## Reading Section (§05)
+
+Ledger-style section showing the current book and three most recently finished. Located between `#writing` and `#contact`.
+
+### Structure
+
+- `.reading-block.reading-now` — one entry with empty index, copper `// NOW` tag
+- `.reading-block.reading-fin` — `<ul>` of three entries with `F.03 / F.02 / F.01` codes (newest at top)
+
+### Updating entries
+
+Edit the `<span class="reading-title">` and `<span class="reading-author">` text in `index.html`. To add a newly-finished book:
+
+1. The current NOW entry becomes the new top of FIN with code `F.04`
+2. The existing `F.01` (oldest of three) drops off
+3. The two retained entries keep their codes (`F.03` stays `F.03`, `F.02` stays `F.02`)
+4. NOW is updated to the next current book
+
+Codes are sticky for the life of an entry — they never get renumbered downward.
+
+### What this section is not
+
+Hardcoded HTML, no JSON, no API. No covers, notes, or progress bars. Decorative tokens (`// NOW`, `// FIN`, `F.NN`) are `aria-hidden="true"`.
+
 ## Mobile Nav
 
 Fixed bottom pill navigation for viewports ≤ 768px. Implemented as `<div role="navigation">` (not `<nav>`) to avoid inheriting desktop `nav {}` CSS.
