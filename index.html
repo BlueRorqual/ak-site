@@ -808,6 +808,107 @@
             margin-top: 0.75rem;
         }
 
+        /* Reading */
+        .reading-section .section-intro {
+            margin-bottom: 3.5rem;
+        }
+
+        .reading-block {
+            margin-bottom: 2.5rem;
+        }
+
+        .reading-block:last-child {
+            margin-bottom: 0;
+        }
+
+        .reading-block-head {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .reading-tag {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .reading-now .reading-tag {
+            color: var(--accent-copper);
+        }
+
+        .reading-fin .reading-tag {
+            color: var(--text-secondary);
+        }
+
+        .reading-rule {
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        .reading-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .reading-entry {
+            display: grid;
+            grid-template-columns: 4rem 1fr auto;
+            align-items: baseline;
+            column-gap: 1.5rem;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .reading-entry:last-child {
+            border-bottom: none;
+        }
+
+        .reading-entry-now {
+            padding: 1.25rem 0 1.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .reading-index {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            letter-spacing: 0.12em;
+            color: var(--text-muted);
+        }
+
+        .reading-title {
+            font-family: var(--font-display);
+            letter-spacing: 0.06em;
+            color: var(--text-primary);
+        }
+
+        .reading-entry-now .reading-title {
+            font-size: 2rem;
+        }
+
+        .reading-fin .reading-title {
+            font-size: 1.05rem;
+        }
+
+        .reading-author {
+            font-family: var(--font-body);
+            font-style: italic;
+            color: var(--text-secondary);
+        }
+
+        .reading-entry-now .reading-author {
+            font-size: 0.95rem;
+        }
+
+        .reading-fin .reading-author {
+            font-size: 0.8rem;
+        }
+
         /* Footer */
         footer {
             padding: 8rem 0;
@@ -1363,7 +1464,7 @@
                     <span class="reading-tag" aria-hidden="true">// FIN</span>
                     <span class="reading-rule" aria-hidden="true"></span>
                 </div>
-                <ul class="reading-list">
+                <ul class="reading-list" role="list">
                     <li class="reading-entry">
                         <span class="reading-index" aria-hidden="true">F.03</span>
                         <span class="reading-title">THE BOX</span>
