@@ -91,20 +91,18 @@ Ledger-style section showing the current book and three most recently finished. 
 ### Structure
 
 - `.reading-block.reading-now` — one entry with empty index, copper `// NOW` tag
-- `.reading-block.reading-fin` — `<ul>` of the three most recent finishes, each with an `F.NN` code (newest at top)
+- `.reading-block.reading-fin` — `<ul>` of three entries with fixed `F.03 / F.02 / F.01` codes (newest at top)
 
 ### Updating entries
 
-Edit the `<span class="reading-title">` and `<span class="reading-author">` text in `index.html`. Check the current top FIN code first — don't assume it. To add a newly-finished book:
+Edit the `<span class="reading-title">` and `<span class="reading-author">` text in `index.html`. To add a newly-finished book:
 
-1. The current NOW entry becomes the new top of FIN with the next code (top code + 1)
-2. The oldest of the three drops off
-3. The two retained entries keep their codes
+1. The current NOW entry moves into the `F.03` slot
+2. The previous `F.03` and `F.02` entries shift down to `F.02` and `F.01`
+3. The old `F.01` drops off
 4. NOW is updated to the next current book
 
-When several books finish at once, number every one in finishing order — including any that immediately roll off — so the sequence has no gaps. Example: top was `F.06`, five finishes arrive → they take `F.07`–`F.11`, and FIN shows `F.11 / F.10 / F.09`.
-
-Codes are sticky for the life of an entry — they never get renumbered downward.
+Codes are positions, not a running count — the ledger is a snapshot, not a catalogue. They never change; only the books in each slot do.
 
 ### What this section is not
 
