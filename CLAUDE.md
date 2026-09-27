@@ -91,22 +91,26 @@ Ledger-style section showing the current book and three most recently finished. 
 ### Structure
 
 - `.reading-block.reading-now` — one entry with empty index, copper `// NOW` tag
-- `.reading-block.reading-fin` — `<ul>` of three entries with `F.03 / F.02 / F.01` codes (newest at top)
+- `.reading-block.reading-fin` — `<ul>` of the three most recent finishes, each with an `F.NN` code (newest at top)
 
 ### Updating entries
 
-Edit the `<span class="reading-title">` and `<span class="reading-author">` text in `index.html`. To add a newly-finished book:
+Edit the `<span class="reading-title">` and `<span class="reading-author">` text in `index.html`. Check the current top FIN code first — don't assume it. To add a newly-finished book:
 
-1. The current NOW entry becomes the new top of FIN with code `F.04`
-2. The existing `F.01` (oldest of three) drops off
-3. The two retained entries keep their codes (`F.03` stays `F.03`, `F.02` stays `F.02`)
+1. The current NOW entry becomes the new top of FIN with the next code (top code + 1)
+2. The oldest of the three drops off
+3. The two retained entries keep their codes
 4. NOW is updated to the next current book
+
+When several books finish at once, number every one in finishing order — including any that immediately roll off — so the sequence has no gaps. Example: top was `F.06`, five finishes arrive → they take `F.07`–`F.11`, and FIN shows `F.11 / F.10 / F.09`.
 
 Codes are sticky for the life of an entry — they never get renumbered downward.
 
 ### What this section is not
 
 Hardcoded HTML, no JSON, no API. No covers, notes, or progress bars. Decorative tokens (`// NOW`, `// FIN`, `F.NN`) are `aria-hidden="true"`.
+
+After any content change, bump `<lastmod>` in `sitemap.xml` to the deploy date.
 
 ## Mobile Nav
 
