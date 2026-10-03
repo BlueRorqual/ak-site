@@ -809,7 +809,8 @@
         }
 
         /* Reading */
-        .reading-section .section-intro {
+        .reading-section .section-intro,
+        .radio-section .section-intro {
             margin-bottom: 3.5rem;
         }
 
@@ -907,6 +908,34 @@
 
         .reading-fin .reading-author {
             font-size: 0.8rem;
+        }
+
+        /* Radio — reuses the reading ledger; titles link to episodes */
+        a.reading-title {
+            text-decoration: none;
+            transition: color 0.3s var(--ease-out-quart);
+        }
+
+        a.reading-title:hover {
+            color: var(--accent-copper);
+        }
+
+        .radio-listen {
+            margin-top: 2.5rem;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+        }
+
+        .radio-listen a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s var(--ease-out-quart);
+        }
+
+        .radio-listen a:hover {
+            color: var(--accent-copper);
         }
 
         /* Footer */
@@ -1074,6 +1103,10 @@
                 font-size: 0.95rem;
             }
 
+            .radio-section .reading-entry {
+                grid-template-columns: 3.5rem 1fr;
+            }
+
         }
 
         /* Focus states */
@@ -1231,6 +1264,7 @@
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#writing">Writing</a></li>
                 <li><a href="#reading">Reading</a></li>
+                <li><a href="#radio">Radio</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
@@ -1525,6 +1559,54 @@
                     </li>
                 </ul>
             </div>
+        </div>
+    </section>
+
+    <section id="radio" class="section radio-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number">06</span>
+                <h2 class="section-title">RADIO</h2>
+            </div>
+            <p class="section-intro">Since 2023 I've co-hosted The Arman and Akhil Show on CiTR 101.9 FM, UBC's campus radio station. We interview activists, politicians and policy experts from Vancouver and the Lower Mainland, and try to get past the news cycle to what moves people.</p>
+
+            <div class="reading-block reading-now">
+                <div class="reading-block-head">
+                    <span class="reading-tag" aria-hidden="true">// LATEST</span>
+                    <span class="reading-rule" aria-hidden="true"></span>
+                </div>
+                <div class="reading-entry reading-entry-now">
+                    <span class="reading-index" aria-hidden="true">2026.08</span>
+                    <a href="https://www.spreaker.com/episode/vancouver-green-s-pete-fry-on-bringing-people-together--74760301" target="_blank" rel="noopener" class="reading-title">BRINGING PEOPLE TOGETHER</a>
+                    <span class="reading-author">Pete Fry, Vancouver Greens</span>
+                </div>
+            </div>
+
+            <div class="reading-block reading-fin">
+                <div class="reading-block-head">
+                    <span class="reading-tag" aria-hidden="true">// SELECTED</span>
+                    <span class="reading-rule" aria-hidden="true"></span>
+                </div>
+                <ul class="reading-list" role="list">
+                    <li class="reading-entry">
+                        <span class="reading-index" aria-hidden="true">2025.01</span>
+                        <a href="https://www.spreaker.com/episode/canada-alone-with-author-dr-kim-richard-nossal--64700456" target="_blank" rel="noopener" class="reading-title">CANADA ALONE</a>
+                        <span class="reading-author">Dr Kim Richard Nossal</span>
+                    </li>
+                    <li class="reading-entry">
+                        <span class="reading-index" aria-hidden="true">2024.12</span>
+                        <a href="https://www.spreaker.com/episode/breaking-up-canadian-monopolies-with-dr-robin-shaban--63097067" target="_blank" rel="noopener" class="reading-title">BREAKING UP CANADIAN MONOPOLIES</a>
+                        <span class="reading-author">Dr Robin Shaban</span>
+                    </li>
+                    <li class="reading-entry">
+                        <span class="reading-index" aria-hidden="true">2024.01</span>
+                        <a href="https://www.spreaker.com/episode/former-city-councillor-andrea-reimer-why-we-need-power-literacy--58477258" target="_blank" rel="noopener" class="reading-title">WHY WE NEED POWER LITERACY</a>
+                        <span class="reading-author">Andrea Reimer, former city councillor</span>
+                    </li>
+                </ul>
+            </div>
+
+            <p class="radio-listen">Listen on <a href="https://www.spreaker.com/podcast/the-arman-and-akhil-show--5817649" target="_blank" rel="noopener">Spreaker</a> · <a href="https://www.citr.ca/listen/the-arman-and-akhil-show" target="_blank" rel="noopener">CiTR</a> · <a href="https://podcasts.apple.com/us/podcast/the-arman-and-akhil-show/id1678408451" target="_blank" rel="noopener">Apple&nbsp;Podcasts</a></p>
         </div>
     </section>
 

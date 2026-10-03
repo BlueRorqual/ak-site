@@ -110,6 +110,26 @@ Hardcoded HTML, no JSON, no API. No covers, notes, or progress bars. Decorative 
 
 After any content change, bump `<lastmod>` in `sitemap.xml` to the deploy date.
 
+## Radio Section (§06)
+
+The Arman and Akhil Show (CiTR 101.9 FM). Located between `#reading` and `#contact`. Reuses the Reading ledger classes (`.reading-block`, `.reading-entry`, etc.) rather than duplicating them; radio-only CSS is the `a.reading-title` link state, `.radio-listen`, and a wider mobile index column for date codes.
+
+### Structure
+
+- `.reading-now` block, copper `// LATEST` tag — the newest episode
+- `.reading-fin` block, `// SELECTED` tag — three hand-picked guest interviews, newest at top
+- `.radio-listen` — Spreaker · CiTR · Apple Podcasts links
+
+Index codes are the episode's publish month (`YYYY.MM`). Titles are the topic part of the Spreaker episode title, uppercased; the guest goes in `.reading-author`. Each title links to the episode's Spreaker page.
+
+### Updating entries
+
+- **New episode:** replace the LATEST entry (date, title, guest, link). The old latest drops off — it does not move into SELECTED.
+- **SELECTED** changes only by deliberate choice. Pick guest interviews with substance; skip the pointed commentary episodes, since the site's reader is recruiters.
+- Episode data (titles, dates, URLs): `curl -s "https://api.spreaker.com/v2/shows/5817649/episodes?limit=10"`
+
+No embedded player — it would pull third-party JS and cookies onto a static page.
+
 ## Mobile Nav
 
 Fixed bottom pill navigation for viewports ≤ 768px. Implemented as `<div role="navigation">` (not `<nav>`) to avoid inheriting desktop `nav {}` CSS.
