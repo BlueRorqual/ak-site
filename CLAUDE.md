@@ -112,7 +112,7 @@ After any content change, bump `<lastmod>` in `sitemap.xml` to the deploy date.
 
 ## Radio Section (§06)
 
-The Arman and Akhil Show (CiTR 101.9 FM). Located between `#reading` and `#contact`. Reuses the Reading ledger classes (`.reading-block`, `.reading-entry`, etc.) rather than duplicating them; radio-only CSS is the `a.reading-title` link state, `.radio-listen`, and a wider mobile index column for date codes.
+The Arman and Akhil Show (CiTR 101.9 FM). Located between `#reading` and `#contact`. Reuses the Reading ledger classes (`.reading-block`, `.reading-entry`, etc.) rather than duplicating them; radio-only CSS is the `a.reading-title` link state, the intro link (show name → CiTR show page), `.radio-listen`, and a wider mobile index column for date codes.
 
 ### Structure
 
