@@ -118,7 +118,7 @@ The Arman and Akhil Show (CiTR 101.9 FM). Located between `#reading` and `#conta
 
 - `.reading-now` block, copper `// LATEST` tag — the newest episode
 - `.reading-fin` block, `// SELECTED` tag — three hand-picked guest interviews, newest at top
-- `.radio-listen` — Spreaker · CiTR · Apple Podcasts links
+- `.radio-listen` — Spreaker · CiTR · Apple Podcasts · Spotify links
 
 Index codes are the episode's publish month (`YYYY.MM`). Titles are the topic part of the Spreaker episode title, uppercased; the guest goes in `.reading-author`. Each title links to the episode's Spreaker page.
 
