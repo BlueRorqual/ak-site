@@ -36,6 +36,8 @@
             --border-subtle: rgba(255, 255, 255, 0.02);
             --border-strong: rgba(255, 255, 255, 0.08);
 
+            --shadow-deep: rgba(0, 0, 0, 0.4);
+
             --font-display: 'Bebas Neue', Impact, sans-serif;
             --font-body: 'DM Sans', -apple-system, sans-serif;
             --font-mono: 'JetBrains Mono', monospace;
@@ -154,7 +156,6 @@
             overflow: hidden;
         }
 
-
         .hero-glow {
             position: absolute;
             top: 20%;
@@ -259,76 +260,18 @@
             border-radius: 50%;
             color: var(--text-muted);
             text-decoration: none;
-            transition: all 0.4s var(--ease-out-expo);
+            transition: color 0.3s var(--ease-out-quart), border-color 0.3s var(--ease-out-quart), box-shadow 0.3s var(--ease-out-quart);
         }
 
         .hero-links a:hover {
             border-color: var(--accent-copper);
             color: var(--accent-copper);
-            transform: translateY(-4px) scale(1.05);
             box-shadow: 0 12px 32px var(--accent-copper-dim);
-            transition-delay: 0s;
-            transition: color 0s, border-color 0s, transform 0.25s var(--ease-out-expo), box-shadow 0.25s var(--ease-out-expo);
         }
 
         .hero-links svg {
             width: 18px;
             height: 18px;
-        }
-
-        /* Marquee - Infinite scroll */
-        .marquee-section {
-            padding: 2rem 0;
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-            background: var(--bg-secondary);
-            overflow: hidden;
-        }
-
-        .marquee {
-            display: flex;
-            width: fit-content;
-        }
-
-        .marquee-track {
-            display: flex;
-            animation: scroll 22s linear infinite;
-        }
-
-        .marquee-content {
-            display: flex;
-            align-items: center;
-        }
-
-        .marquee-item {
-            font-family: var(--font-display);
-            font-size: 0.9rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            white-space: nowrap;
-            display: flex;
-            align-items: center;
-            padding: 0 1.5rem;
-        }
-
-        .marquee-item::after {
-            content: '';
-            width: 6px;
-            height: 6px;
-            background: var(--accent-copper);
-            border-radius: 50%;
-            margin-left: 3rem;
-        }
-
-        .marquee-item .highlight {
-            color: var(--accent-copper);
-            margin-left: 0.5ch;
-        }
-
-        @keyframes scroll {
-            from { transform: translateX(0); }
-            to { transform: translateX(-50%); }
         }
 
         /* Section styling */
@@ -414,7 +357,7 @@
             backdrop-filter: blur(10px);
             border: 1px solid var(--border);
             border-radius: 20px;
-            transition: all 0.5s var(--ease-out-expo);
+            transition: border-color 0.5s var(--ease-out-expo);
         }
 
         .timeline-item::before {
@@ -432,7 +375,6 @@
 
         .timeline-item:hover {
             border-color: var(--border-strong);
-            transform: translateX(8px);
         }
 
         .timeline-item:hover::before {
@@ -531,7 +473,7 @@
             border-radius: 20px;
             padding: 2rem;
             position: relative;
-            transition: all 0.5s var(--ease-out-expo);
+            transition: border-color 0.5s var(--ease-out-expo), box-shadow 0.5s var(--ease-out-expo);
             overflow: hidden;
         }
 
@@ -549,8 +491,7 @@
 
         .project-card:hover {
             border-color: var(--border-strong);
-            transform: translateY(-8px);
-            box-shadow: 0 24px 48px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 24px 48px var(--shadow-deep);
         }
 
         .project-card:hover::before {
@@ -596,16 +537,8 @@
             font-family: var(--font-mono);
             font-size: 0.78rem;
             color: var(--accent-copper);
-            opacity: 0;
-            transform: translateY(4px);
-            transition: opacity 0.3s var(--ease-out-expo), transform 0.3s var(--ease-out-expo);
             position: relative;
             z-index: 2;
-        }
-
-        .project-card:hover .project-link {
-            opacity: 1;
-            transform: translateY(0);
         }
 
         .project-description {
@@ -639,24 +572,6 @@
             gap: 1rem;
         }
 
-        .theme-tag {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            padding: 0.85rem 1.5rem;
-            background: var(--bg-glass);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--border);
-            border-radius: 100px;
-            transition: all 0.4s var(--ease-out-expo);
-            cursor: default;
-        }
-
-        .theme-tag:hover {
-            border-color: var(--accent-copper);
-            color: var(--accent-copper);
-            transform: translateY(-3px);
-        }
-
         /* Writing — Early Work collection */
         .writing-collection {
             margin-top: 5rem;
@@ -683,29 +598,6 @@
             font-size: 1rem;
             max-width: 680px;
             line-height: 1.7;
-        }
-
-        .writing-entry {
-            display: grid;
-            grid-template-columns: 100px 1fr;
-            gap: 0 3.5rem;
-            padding: 2.75rem 0;
-            border-bottom: 1px solid var(--border-subtle);
-        }
-
-        .writing-entry:last-child {
-            border-bottom: none;
-            padding-bottom: 0;
-        }
-
-        .entry-year {
-            font-family: var(--font-mono);
-            font-size: 0.78rem;
-            color: var(--accent-copper);
-            letter-spacing: 0.06em;
-            padding-top: 0.2rem;
-            opacity: 0.65;
-            white-space: nowrap;
         }
 
         .entry-title {
@@ -746,7 +638,7 @@
             backdrop-filter: blur(10px);
             border: 1px solid var(--border);
             border-radius: 100px;
-            transition: all 0.4s var(--ease-out-expo);
+            transition: color 0.4s var(--ease-out-expo), border-color 0.4s var(--ease-out-expo), background-color 0.4s var(--ease-out-expo);
             cursor: pointer;
             display: inline-flex;
             align-items: center;
@@ -756,14 +648,12 @@
         .early-work-btn:hover {
             border-color: var(--accent-copper);
             color: var(--accent-copper);
-            transform: translateY(-3px);
         }
 
         .early-work-btn.active {
             border-color: var(--accent-copper);
             color: var(--accent-copper);
             background: var(--accent-copper-dim);
-            transform: translateY(-3px);
         }
 
         .ewb-year {
@@ -1010,13 +900,12 @@
             backdrop-filter: blur(10px);
             border: 1px solid var(--border);
             border-radius: 100px;
-            transition: all 0.4s var(--ease-out-expo);
+            transition: color 0.4s var(--ease-out-expo), border-color 0.4s var(--ease-out-expo);
         }
 
         .footer-link:hover {
             border-color: var(--accent-copper);
             color: var(--accent-copper);
-            transform: translateY(-3px);
         }
 
         .footer-copyright {
@@ -1083,11 +972,6 @@
                 gap: 1rem;
             }
 
-            .writing-entry {
-                grid-template-columns: 1fr;
-                gap: 0.4rem 0;
-            }
-
             footer {
                 padding-bottom: 6rem;
             }
@@ -1129,37 +1013,6 @@
             outline-offset: 4px;
         }
 
-        /* Scroll animations — removed; content visible by default */
-
-        /* === ENHANCEMENTS === */
-
-        /* Nav links underline effect */
-        .nav-links a {
-            position: relative;
-            display: inline-block;
-            transition: color 0.3s var(--ease-out-quart);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 100%;
-            height: 1px;
-            background: var(--accent-copper);
-            transform: scaleX(0);
-            transform-origin: right;
-            transition: transform 0.4s var(--ease-out-expo);
-        }
-
-        .nav-links a:hover::after {
-            transform: scaleX(1);
-            transform-origin: left;
-        }
-
-        /* Timeline item subtle glow on hover */
-
         /* Timeline item subtle glow on hover */
         .timeline-item::after {
             content: '';
@@ -1176,27 +1029,6 @@
             opacity: 1;
         }
 
-        /* Theme tags shimmer */
-        .theme-tag {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .theme-tag::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(232, 147, 90, 0.1), transparent);
-            transition: left 0.6s ease;
-        }
-
-        .theme-tag:hover::before {
-            left: 100%;
-        }
-
         /* Section divider line */
         .section::before {
             content: '';
@@ -1211,13 +1043,6 @@
 
         .section:first-of-type::before {
             display: none;
-        }
-
-        /* Responsive adjustments for enhancements */
-        @media (max-width: 768px) {
-            .hero-portrait {
-                opacity: 0.29;
-            }
         }
 
         /* Mobile bottom nav */
@@ -1249,7 +1074,7 @@
                 text-decoration: none;
                 padding: 0.5rem 0.9rem;
                 border-radius: 100px;
-                transition: all 0.3s var(--ease-out-expo);
+                transition: color 0.3s var(--ease-out-expo), background-color 0.3s var(--ease-out-expo);
                 letter-spacing: 0.06em;
                 text-transform: uppercase;
                 white-space: nowrap;
@@ -1259,6 +1084,16 @@
             .mobile-nav-link:active {
                 color: var(--accent-copper);
                 background: var(--accent-copper-dim);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *, *::before, *::after {
+                transition-duration: 0.01ms !important;
             }
         }
     </style>
@@ -1301,30 +1136,6 @@
         </div>
         <img src="images/headshot.jpg" alt="" class="hero-portrait" aria-hidden="true" fetchpriority="high">
     </header>
-
-
-    <!--
-    <div class="marquee-section">
-        <div class="marquee">
-            <div class="marquee-track">
-                <div class="marquee-content">
-                    <span class="marquee-item">Sales &<span class="highlight">Systems</span></span>
-                    <span class="marquee-item">Logistics &<span class="highlight">Infrastructure</span></span>
-                    <span class="marquee-item">Trust Over<span class="highlight">Tactics</span></span>
-                    <span class="marquee-item">Long-term<span class="highlight">Thinking</span></span>
-                    <span class="marquee-item">Clarity Under<span class="highlight">Constraint</span></span>
-                </div>
-                <div class="marquee-content" aria-hidden="true">
-                    <span class="marquee-item">Sales &<span class="highlight">Systems</span></span>
-                    <span class="marquee-item">Logistics &<span class="highlight">Infrastructure</span></span>
-                    <span class="marquee-item">Trust Over<span class="highlight">Tactics</span></span>
-                    <span class="marquee-item">Long-term<span class="highlight">Thinking</span></span>
-                    <span class="marquee-item">Clarity Under<span class="highlight">Constraint</span></span>
-                </div>
-            </div>
-        </div>
-    </div>
-    -->
 
     <section id="about" class="section">
         <div class="container">
@@ -1637,17 +1448,6 @@
     </footer>
 
     <script>
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
-        });
-
         // Early Work entry toggles
         (function() {
             const btns = document.querySelectorAll('.early-work-btn');
@@ -1665,7 +1465,8 @@
                 if (target) target.classList.add('active');
                 if (scroll) {
                     setTimeout(() => {
-                        panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                        panel.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'nearest' });
                     }, 120);
                 }
             }
@@ -1683,7 +1484,6 @@
                     }
                 });
             });
-
 
         })();
     </script>

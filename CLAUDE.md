@@ -82,7 +82,7 @@ Single radial gradient — no `mask-composite`. The 3-layer composite approach (
 
 ### Mobile
 
-Portrait opacity scales to `0.29` via `.hero-loaded .hero-portrait` override in mobile media query. Nav links hidden; mobile bottom pill nav shown instead.
+Portrait opacity scales to `0.29` via the `.hero-portrait` override in the mobile media query. Nav links hidden; mobile bottom pill nav shown instead.
 
 ## Reading Section (§05)
 
@@ -148,9 +148,11 @@ Stripped to essentials only. All entrance choreography, particles, ray, cursor s
 
 **What remains:**
 - Writing accordion: `grid-template-rows: 0fr → 1fr` CSS transition on click
-- Hover states: `color`, `border-color`, `box-shadow` transitions on links/cards (no transforms)
-- Smooth anchor scroll: JS `scrollIntoView`
-- Hero link entrance delays: `nth-child` stagger, cleared via `setTimeout` after 2s so hover is instant thereafter
+- Hover states: `color`, `border-color`, `background-color`, `box-shadow`, and `opacity` (work-card accent bar and glow, project-card top bar) — never `transform`. List transition properties explicitly; no `transition: all`.
+- Smooth anchor scroll: CSS `scroll-behavior: smooth` + `scroll-padding-top`. No JS click handler, so the URL hash updates and Back works.
+- `prefers-reduced-motion: reduce` turns off smooth scroll and transitions; the accordion's `scrollIntoView` checks it too.
+
+The only `transform`s in the stylesheet are `translateX(-50%)` centring and `text-transform`.
 
 **What was removed:**
 - Hero entrance stagger (`hero-loaded` class orchestration) — all content visible on load
@@ -161,6 +163,9 @@ Stripped to essentials only. All entrance choreography, particles, ray, cursor s
 - Card 3D tilt (mousemove + perspective)
 - Magnetic nav links (mousemove translate)
 - Scroll indicator pulse
+- Marquee (infinite scroll) and theme-tag shimmer
+- Hover lifts/slides on hero icons, work cards, project cards, writing buttons, footer links; nav underline sweep (Oct 2026)
+- Footer link `nth-child` transition delays (Oct 2026)
 
 ## Performance Notes
 
